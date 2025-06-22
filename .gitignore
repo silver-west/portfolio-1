@@ -1,0 +1,32 @@
+#Eclipse 관련 파일/폴더 무시
+.settings/
+.metadata/
+*.snap
+*.tmp
+*.bak
+*.swp
+*.lock
+
+#Eclipse 프로젝트 파일
+.project
+.classpath
+
+#빌드 관련
+build/
+target/
+bin/
+
+#OS에서 자동 생성되는 파일들
+.DS_Store         # macOS
+Thumbs.db         # Windows
+
+#로그 파일
+*.log
+
+#민감한 정보
+*.properties
+*.env
+
+#기타
+logs/
+*.war
