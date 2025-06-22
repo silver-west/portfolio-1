@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<div>
-	header 올 자리
+<div align="center">
+	<h1>Silver's Portfolio</h1>
 </div>

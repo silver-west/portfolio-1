@@ -1,27 +1,30 @@
-package common_controller;
+package controller_member;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-
-@WebServlet("/main.do")
-public class Main extends HttpServlet {
+@WebServlet("/Logout.do")
+public class Logout extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+  
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("==메인 화면으로 이동합니다==");
+		System.out.println("== logout page ==");
 		
-		RequestDispatcher dis = request.getRequestDispatcher("common/04_main.jsp");
-		dis.forward(request, response);
+		HttpSession session = request.getSession();
+		session.setAttribute("logId", null);
+		session.setAttribute("logNick", null);
+		
+		String path = request.getContextPath();
+		response.sendRedirect(path + "/Main.do");
+		
 	}
 
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 	}
