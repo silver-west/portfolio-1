@@ -9,6 +9,7 @@
 <title>Silver's Portfolio</title>
 
 <link rel="stylesheet" href="${contextPath}/common/common.css">
+<link rel="stylesheet" href="${contextPath}/Admin/admin.css">
 
 </head>
 <body>
