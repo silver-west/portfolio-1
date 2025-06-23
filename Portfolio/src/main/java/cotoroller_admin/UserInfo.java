@@ -11,25 +11,25 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import DB_member.AdminDAO;
 import DB_member.Member;
 
-@WebServlet("/UserControl.do")
-public class UserControl extends HttpServlet {
+@WebServlet("/UserInfo.do")
+public class UserInfo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+	@SuppressWarnings("unchecked")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("== 유저 관리 페이지 ==");
+		System.out.println("== 유저 정보 조회 ==");
+		String str = request.getParameter("user");
+		int userIdx = Integer.parseInt(str);
 		
-		try {
-			ArrayList<Member> memberList = AdminDAO.instance.getMemberList();
-			HttpSession session = request.getSession();
-			session.setAttribute("memberList", memberList);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}	
+		HttpSession session = request.getSession();
+		ArrayList<Member> memberList = (ArrayList<Member>)session.getAttribute("memberList");
+		Member user = memberList.get(userIdx);
+	
+		request.setAttribute("userInfo", user);
 		
-		RequestDispatcher dis = request.getRequestDispatcher("/Admin/03_userControl.jsp");
+		RequestDispatcher dis = request.getRequestDispatcher("/Admin/04_userInfo.jsp");
 		dis.forward(request, response);
 	}
 

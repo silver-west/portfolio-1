@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
 
 public class MemberDAO {
 	public static MemberDAO instance = new MemberDAO();
@@ -275,26 +274,5 @@ public class MemberDAO {
 		return check;
 	}
 	
-	public ArrayList<Member> getMemberList() throws Exception {
-		ArrayList<Member> memberList = new ArrayList<Member>();
-		
-		try {
-			getConn();
-			String sql = "SELECT * FROM member";
-			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			
-			while (rs.next()) {
-				Member member = new Member(rs.getString(1), rs.getString(2), rs.getString(3));
-				memberList.add(member);
-			}
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			closeDB();
-		}
-		
-		return memberList;
-	}
+	
 }

@@ -5,6 +5,8 @@
 <%
 	session.setAttribute("logId", null);
 	session.setAttribute("logNick", null);
+	
+	session.setAttribute("memberList", null);
 %>
 
 <script>

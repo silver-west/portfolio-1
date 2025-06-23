@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class AdminDAO {
 	public static AdminDAO instance = new AdminDAO();
@@ -82,6 +83,55 @@ public class AdminDAO {
 		}
 		
 		return nick;
+	}
+	
+	public ArrayList<Member> getMemberList() throws Exception {
+		ArrayList<Member> memberList = new ArrayList<Member>();
+		
+		try {
+			getConn();
+			String sql = "SELECT * FROM member";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				Member member = new Member(rs.getString(1), rs.getString(2), rs.getString(3));
+				memberList.add(member);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		
+		return memberList;
+	}
+	
+	public boolean expelUser(String id) throws Exception {
+		boolean check = false;
+		
+		try {
+			getConn();
+			String sql = "DELETE FROM member WHERE id = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			
+			int result = pstmt.executeUpdate();
+			if (result == 1) {
+				System.out.println("회원 정보 삭제 성공");
+				check = true;
+			} else {
+				System.out.println("회원 정보 삭제 실패");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		
+		return check;
 	}
 	
 }

@@ -13,12 +13,14 @@
 					<td>정보</td>
 					<td>추방</td>
 				</tr>
+				<c:set var="idx" value="${0}"/>
 				<c:forEach var="member" items="${memberList}">
 				<tr>
 					<td>${member.id}</td>
-					<td><button>정보</button> </td>
-					<td><button>추방</button> </td>
+					<td><button onclick="window.location.href='${contextPath}/UserInfo.do?user=${idx}'">정보</button> </td>
+					<td><button onclick="window.location.href='${contextPath}/ExpelUser.do?userId=${member.id}'">추방</button> </td>
 				</tr>
+				<c:set var="idx" value="${idx = idx + 1}"/>
 				</c:forEach>
 			</table>
 		</c:when>
