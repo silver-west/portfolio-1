@@ -16,7 +16,7 @@ public class BoardDAO {
 	ResultSet rs = null;
 	
 	public Connection getConn() throws Exception {
-		String jdbcUrl = "jdbc:mysql://localhost:3306/member_data?serverTimezone=UTC&useSSL=false";
+		String jdbcUrl = "jdbc:mysql://localhost:3306/board_data?serverTimezone=UTC&useSSL=false";
 		String dbId = "root";
 		String dbPw = "root";
 					
