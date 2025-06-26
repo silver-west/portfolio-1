@@ -15,10 +15,14 @@
 			<td>${post.readCount}</td>
 		</tr>
 		<tr>
-			<td colspan="6">
-				<textarea rows="10" cols="50" readonly="readonly">${post.content}</textarea>
+			<td colspan="6" width="370px" height="160px">
+				${post.content}
 			</td>
 		</tr>
 	</table>
+	<c:if test="${logId eq writer.id}">
+		<button onclick="window.location.href='${contextPath}/EditPost.do?boardNum=${post.number}'">수정</button>
+		<button onclick="window.location.href='${contextPath}/DelPost.do?boardNum=${post.number}'">삭제</button>
+	</c:if>
 
 </div>
