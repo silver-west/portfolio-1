@@ -9,46 +9,29 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import DB_board.Board;
 import DB_board.BoardDAO;
-import DB_member.Member;
-import DB_member.MemberDAO;
 
-@WebServlet("/Post.do")
-public class Post extends HttpServlet {
+@WebServlet("/DelPost.do")
+public class DelPost extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("== 게시글 정보로 이동  ==");
+		System.out.println("== 게시글 삭제 페이지 ==");
 		
 		String str = request.getParameter("boardNum");
 		int boardNum = Integer.parseInt(str);
 		
-		//조회수 올리기
 		try {
-			BoardDAO.instance.upReadCount(boardNum);
+			boolean check = BoardDAO.instance.delPost(boardNum);
+			request.setAttribute("delPostCheck", check);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		//게시글 가져오기
-		
-		try {
-			Board post = BoardDAO.instance.getPost(boardNum);
-			request.setAttribute("post", post);
-			
-			Member writer = MemberDAO.instance.getMemberFromId(post.getWriter());
-			request.setAttribute("writer", writer);
-			
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		
-		RequestDispatcher dis = request.getRequestDispatcher("/Board/03_postInfo.jsp");
+		RequestDispatcher dis = request.getRequestDispatcher("/Board/07_delComplete.jsp");
 		dis.forward(request, response);
 	}
+	
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

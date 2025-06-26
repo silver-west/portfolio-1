@@ -11,42 +11,25 @@ import javax.servlet.http.HttpServletResponse;
 
 import DB_board.Board;
 import DB_board.BoardDAO;
-import DB_member.Member;
-import DB_member.MemberDAO;
 
-@WebServlet("/Post.do")
-public class Post extends HttpServlet {
+@WebServlet("/EditPost.do")
+public class EditPost extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("== 게시글 정보로 이동  ==");
+		System.out.println("== 게시글 수정 페이지 ==");
 		
 		String str = request.getParameter("boardNum");
 		int boardNum = Integer.parseInt(str);
 		
-		//조회수 올리기
-		try {
-			BoardDAO.instance.upReadCount(boardNum);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		//게시글 가져오기
-		
 		try {
 			Board post = BoardDAO.instance.getPost(boardNum);
-			request.setAttribute("post", post);
-			
-			Member writer = MemberDAO.instance.getMemberFromId(post.getWriter());
-			request.setAttribute("writer", writer);
-			
-			
+			request.setAttribute("editPost", post);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		
-		RequestDispatcher dis = request.getRequestDispatcher("/Board/03_postInfo.jsp");
+		RequestDispatcher dis = request.getRequestDispatcher("/Board/08_editForm.jsp");
 		dis.forward(request, response);
 	}
 

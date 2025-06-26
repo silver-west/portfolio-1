@@ -9,10 +9,10 @@
 	<div align="center">
 		<table border="1">
 			<tr>
-				<td><a href="#">전체 글 목록</a></td>
+				<td><a href="${contextPath}/BoardMain.do">전체 글 목록</a></td>
 				<c:if test="${!empty logId}">
-					<td><a href="#">글 작성</a></td>
-					<td><a href="#">작성 글 관리</a></td>
+					<td><a href="${contextPath}/AddPost.do">글 작성</a></td>
+					<td><a href="${contextPath}/MyPostList.do">작성 글 관리</a></td>
 				</c:if>
 			</tr>
 		</table>
