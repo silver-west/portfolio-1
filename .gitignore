@@ -7,6 +7,9 @@
 *.swp
 *.lock
 
+#Eclipse
+Servers/
+
 #Eclipse 프로젝트 파일
 .project
 .classpath
