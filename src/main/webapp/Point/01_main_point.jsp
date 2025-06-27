@@ -49,13 +49,13 @@
 		<!-- 버튼 -->
 		<div align="center">
 			<c:if test="${startBtn > 1}">
-				<button onclick="window.location.href='${contextPath}/NextHistory.do?nextPage=${startBtn - 1}'">이전</button>
+				<button onclick="window.location.href='${contextPath}/NextPoint.do?nextPage=${startBtn - 1}'">이전</button>
 			</c:if>
 			<c:forEach var="i" begin="${startBtn}" end="${endBtn}">
-				<button onclick="window.location.href='${contextPath}/NextHistory.do?nextPage=${i}'">${i}</button>
+				<button onclick="window.location.href='${contextPath}/NextPoint.do?nextPage=${i}'">${i}</button>
 			</c:forEach>
 			<c:if test="${endBtn < lastBtn}">
-				<button onclick="window.location.href='${contextPath}/NextHistory.do?nextPage=${endBtn + 1}'">이후</button>
+				<button onclick="window.location.href='${contextPath}/NextPoint.do?nextPage=${endBtn + 1}'">이후</button>
 			</c:if>
 		</div>
 	</c:otherwise>

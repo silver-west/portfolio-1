@@ -13,8 +13,8 @@
 				<table border="1">
 					<tr>
 						<td><a href="${contextPath}/BoardIndex.do">내역</a></td>
-						<td><a href="${contextPath}/AddPost.do">선물하기</a></td>
-						<td><a href="${contextPath}/MyPostList.do">상점</a></td>
+						<td><a href="${contextPath}/SendPoint.do">선물하기</a></td>
+						<td><a href="${contextPath}/PointStore.do">상점</a></td>
 					</tr>
 				</table>
 			</div>
