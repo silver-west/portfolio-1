@@ -11,15 +11,26 @@
 				<td>작성자</td>
 				<td>조회수</td>
 			</tr>
-			<c:set var="num" value="${0}"/>
-			<c:forEach var="post" items="${boardList}">
+			<!-- 게시글 -->
+			<c:forEach var="i" begin="${startIdx}" end="${endIdx - 1}">
 			<tr>
-				<td>${num + 1}</td>
-				<td><a href="${contextPath}/Post.do?boardNum=${post.number}">${post.subject}</a></td>
-				<td>${post.writer}</td>
-				<td>${post.readCount}</td>
+				<td>${i + 1}</td>
+				<td><a href="${contextPath}/Post.do?boardNum=${boardList[i].number}">${boardList[i].subject}</a></td>
+				<td>${boardList[i].writer}</td>
+				<td>${boardList[i].readCount}</td>
 			</tr>
-			<c:set var="num" value="${num + 1}"/>	
 			</c:forEach>
 		</table>
+		<!-- 버튼 -->
+		<div>
+			<c:if test="${startBtn > 1}">
+				<button onclick="window.location.href='${contextPath}/PasingPro.do?nextPage=${startBtn - 1}'">이전</button>
+			</c:if>
+			<c:forEach var="i" begin="${startBtn}" end="${endBtn}">
+				<button onclick="window.location.href='${contextPath}/PasingPro.do?nextPage=${i}'">${i}</button>
+			</c:forEach>
+			<c:if test="${endBtn < lastBtn}">
+				<button onclick="window.location.href='${contextPath}/PasingPro.do?nextPage=${endBtn + 1}'">이후</button>
+			</c:if>
+		</div>
 </div>
