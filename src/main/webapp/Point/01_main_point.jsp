@@ -58,7 +58,5 @@
 				<button onclick="window.location.href='${contextPath}/NextHistory.do?nextPage=${endBtn + 1}'">이후</button>
 			</c:if>
 		</div>
-		
-		</div>	
 	</c:otherwise>
 </c:choose>
