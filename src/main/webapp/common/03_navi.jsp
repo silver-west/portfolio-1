@@ -6,9 +6,9 @@
 	<table>
 		<tr>
 			<td><a href="${contextPath}/BoardIndex.do">게시판</a></td>
-			<td><a href="#">게임</a></td>
-			<td><a href="#">포인트</a></td>
-			<td><a href="#">그 외</a></td>
+			<td><a href="${contextPath}/PointIndex.do">포인트</a></td>
+			<td><a href="#">준비중</a></td>
+			<td><a href="#">준비중</a></td>
 		</tr>
 	</table>
 </div>
