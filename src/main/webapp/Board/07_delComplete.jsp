@@ -12,5 +12,4 @@
 			<h3>게시글 삭제 실패</h3>
 		</c:otherwise>
 	</c:choose>
-	<a href="${contextPath}/MyPostList.do">돌아가기</a>
 </div>

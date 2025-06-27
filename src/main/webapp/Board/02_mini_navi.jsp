@@ -5,7 +5,9 @@
 <jsp:include page="/Board/00_intergration_board.jsp"></jsp:include>
 <div align="center">
 		<h1>게시판</h1>
-		<p>글 작성 및 관리는 회원만 가능</p>
+		<c:if test="${empty logId}">
+			<p>글 작성 및 관리는 회원만 가능</p>
+		</c:if>
 	<div align="center">
 		<table border="1">
 			<tr>
