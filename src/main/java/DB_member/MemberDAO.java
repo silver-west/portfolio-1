@@ -13,7 +13,7 @@ public class MemberDAO {
 	ResultSet rs = null;
 	
 	public Connection getConn() throws Exception {
-		String jdbcUrl = "jdbc:mysql://localhost:3306/member_data?serverTimezone=UTC&useSSL=false";
+		String jdbcUrl = "jdbc:mysql://localhost:3306/p_data?serverTimezone=UTC&useSSL=false";
 		String dbId = "root";
 		String dbPw = "root";
 					

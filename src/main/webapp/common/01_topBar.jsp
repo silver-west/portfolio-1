@@ -12,7 +12,7 @@
 		<c:choose>
 			<c:when test="${logId eq 'admin'}">
 				<span>${logNick} 페이지</span>
-				<button onclick="window.location.href='${contextPath}/'">게시글 관리</button>
+				<button onclick="window.location.href='${contextPath}/AdminIndex.do'">게시글 관리</button>
 				<button onclick="window.location.href='${contextPath}/UserControl.do'">회원관리</button>
 				<button onclick="window.location.href='${contextPath}/Logout.do'">로그아웃</button>
 			</c:when>

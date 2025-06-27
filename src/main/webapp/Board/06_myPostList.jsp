@@ -4,6 +4,11 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <jsp:include page="/Board/02_mini_navi.jsp"></jsp:include>
 <div align="center">
+<c:choose>
+	<c:when test="${empty myPostList}">
+		<h3>작성 게시글이 없습니다</h3>
+	</c:when>
+	<c:otherwise>
 		<table border="1">
 			<tr>
 				<td>번호</td>
@@ -24,4 +29,6 @@
 			<c:set var="num" value="${num + 1}"/>	
 			</c:forEach>
 		</table>
+	</c:otherwise>
+</c:choose>
 </div>

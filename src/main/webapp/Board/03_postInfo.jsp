@@ -20,8 +20,10 @@
 			</td>
 		</tr>
 	</table>
-	<c:if test="${logId eq writer.id}">
-		<button onclick="window.location.href='${contextPath}/EditPost.do?boardNum=${post.number}'">수정</button>
+	<c:if test="${logId eq writer.id or logId eq 'admin'}">
+		<c:if test="${logId eq writer.id}">
+			<button onclick="window.location.href='${contextPath}/EditPost.do?boardNum=${post.number}'">수정</button>		
+		</c:if>
 		<button onclick="window.location.href='${contextPath}/DelPost.do?boardNum=${post.number}'">삭제</button>
 	</c:if>
 
