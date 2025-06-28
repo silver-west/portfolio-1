@@ -18,6 +18,8 @@
 } */
 body {
     font-family: 'NanumSquareRound';
+    background-color: #cecece;
+    height: 1000px;
 } 
 
 /* top */
@@ -25,7 +27,7 @@ body {
     height: 130px;
 }
 
-h1 {
+.title {
     line-height: 80px;
     margin: 0;
     color: white;
@@ -47,7 +49,7 @@ h1 {
 	text-align: center;
 	line-height: 35px;
 	height: 40px;
-	width: 200px;
+	width: 300px;
 }
 
 .navBar {
@@ -69,17 +71,29 @@ h1 {
 }
 
 /*content Box*/
+
 .contentBox {
     background-color: #cecece;
-    height: 700px;
+    margin: 0 auto;
+    height: 70%;
+    width: 80%;
 }
 
-
-/*content Box*/
-.contentBox {
-    background-color: #cecece;
-    height: 700px;
+.content {
+	width: 80%;
 }
+
+.contentTitle {
+	text-align: center;
+	font-size: 30px;
+	margin-top: 40px;
+}
+
+.titleBox {
+	padding-top: 40px;
+	text-align: center;
+}
+
 
 /*footer*/
 .footer {

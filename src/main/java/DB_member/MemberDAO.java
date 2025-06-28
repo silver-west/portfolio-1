@@ -166,6 +166,7 @@ public class MemberDAO {
 				member = new Member(rs.getString(1), rs.getString(2), rs.getString(3));
 			} else {
 				System.out.println("조회 실패 - 시스템 오류");
+				member = new Member("x", "x", "탈퇴회원");
 			}	
 			
 		} catch (Exception e) {
@@ -177,7 +178,6 @@ public class MemberDAO {
 		return member;
 		
 	}
-	
 	
 	public int joinPro(String id, String pw, String nickName) throws Exception {
 		int check = 0;

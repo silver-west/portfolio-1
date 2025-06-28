@@ -12,9 +12,9 @@
 	<c:if test="${!empty logNick}">
 		<c:choose>
 			<c:when test="${logId eq 'admin'}">
-				<span>${logNick} 페이지</span>
                 <div class="top container-fluid d-flex justify-content-end">
-                    <button class="btn btn-danger me-2 mt-2 topBtn" data-url="${contextPath}/AdminIndex.do">게시글 관리</button>
+					<span id="logDiv">⭐ 관리자 페이지 : ${logNick}</span>
+                    <button class="btn btn-danger me-2 mt-2 topBtn" data-url="${contextPath}/AdminIndex.do">게시판 관리</button>
                     <button class="btn btn-warning me-2 mt-2 topBtn" data-url="${contextPath}/UserControl.do">회원관리</button>
                     <button class="btn btn-primary me-3 mt-2 topBtn" data-url="${contextPath}/Logout.do">로그아웃</button>
                 </div>
@@ -39,7 +39,6 @@
         			window.location.href = url;
         		}
         	});
-           
 
         });
     </script>

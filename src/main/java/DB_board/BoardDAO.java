@@ -80,6 +80,8 @@ public class BoardDAO {
 			
 			while (rs.next()) {
 				//id -> nick 변환
+				System.out.println("rs.getString(2) : " + rs.getString(2));
+				
 				Member writer = MemberDAO.instance.getMemberFromId(rs.getString(2));
 				String wirterNick = writer.getNickName();
 				
