@@ -20,8 +20,8 @@
                 </div>
 			</c:when>
 			<c:otherwise>
-				<span>${logNick}님</span>
                 <div class="top container-fluid d-flex justify-content-end">
+					<span id="logDiv">⭐ ${logNick} 님</span>
                     <button class="btn btn-danger me-2 mt-2 topBtn" data-url="${contextPath}/EditInfo.do">정보수정</button>
                     <button class="btn btn-warning me-2 mt-2 topBtn" data-url="${contextPath}/Logout.do">로그아웃</button>
                     <button class="btn btn-primary me-3 mt-2 topBtn" data-url="${contextPath}/DelMember.do">탈퇴</button>
