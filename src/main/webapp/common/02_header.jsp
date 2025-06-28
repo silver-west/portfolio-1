@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<div align="center">
-	<h1>Silver's Portfolio</h1>
+<div class="mainHeader container-fluid d-flex justify-content-center py-4">
+        <h1 class="title fw-bold">Silver's Portfolio Page</h1>
 </div>
