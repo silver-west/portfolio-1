@@ -12,7 +12,7 @@
 			<div align="center">
 				<table border="1">
 					<tr>
-						<td><a href="${contextPath}/BoardIndex.do">내역</a></td>
+						<td><a href="${contextPath}/PointIndex.do">내역</a></td>
 						<td><a href="${contextPath}/SendPoint.do">선물하기</a></td>
 						<td><a href="${contextPath}/PointStore.do">상점</a></td>
 					</tr>

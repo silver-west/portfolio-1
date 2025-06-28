@@ -58,4 +58,87 @@ public class PointDAO {
 		
 		return pointInfo;
 	}
+	
+	public boolean updatePointToId(String id, int point, boolean opt) throws Exception {
+		boolean check = false;
+		
+		String option = opt ? "+" : "-";
+		String sql = String.format("UPDATE point_table SET myPoint = myPoint %s %d", option, point)
+					+ " WHERE id = ?";
+		
+		try {
+			getConn();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			int result = pstmt.executeUpdate();
+			
+			if (result == 1) {
+				System.out.println("포인트 업데이트 성공");
+				check = true;
+			} else {
+				System.out.println("포인트 업데이트 실패");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		
+		return check;
+	}
+	
+	public boolean updatePointToNick(String nick, int point, boolean opt) throws Exception {
+		boolean check = false;
+		
+		String option = opt ? "+" : "-";
+		String sql = "UPDATE point_table p JOIN member m ON p.id = m.id"
+		+ String.format(" SET p.myPoint = p.myPoint %s %d WHERE m.nickname = '%s'", option, point, nick);
+		
+		try {
+			getConn();
+			pstmt = conn.prepareStatement(sql);
+			int result = pstmt.executeUpdate();
+			
+			if (result == 1) {
+				System.out.println("포인트 업데이트 성공");
+				check = true;
+			} else {
+				System.out.println("포인트 업데이트 실패");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		
+		return check;
+	}
+	
+	public boolean sendPoint(String sendUser, String receive, int sendPoint, String search) throws Exception {
+		boolean check = false;
+		boolean sendCheck = false;
+		boolean receiveCheck = false;
+		
+		//1. 보내기
+		sendCheck = updatePointToId(sendUser, sendPoint, false);
+		
+		if (sendCheck) {
+			//2. 받기
+			if (search.equals("id")) {
+				receiveCheck = updatePointToId(receive, sendPoint, true);
+			} else {
+				receiveCheck = updatePointToNick(receive, sendPoint, true);
+			}
+		}
+			
+		if (sendCheck && receiveCheck) {
+			check = true;
+		}
+		
+		return check;
+	}
+	
+	
 }

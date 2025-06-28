@@ -59,4 +59,61 @@ public class HistoryDAO {
 		
 		return historyList;
 	}
+	
+	public int getMaxHis() throws Exception {
+		int maxNum = 0;
+		
+		try {
+			getConn();
+			String sql = "SELECT MAX(history_num) FROM point_history";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				maxNum = rs.getInt(1);
+			} else {
+				System.out.println("== 포인트 내역이 없습니다 ==");
+				maxNum = 0;
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		
+		return maxNum;
+	}
+	
+	public boolean addHistory(String id, String coment, int price, String option) throws Exception {
+		boolean check = false;
+		
+		int number = getMaxHis() + 1;
+		try {
+			getConn();
+			String sql = "INSERT INTO point_history VALUES (?, ?, ?, ?, ?)";
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, number);
+			pstmt.setString(2, id);
+			pstmt.setString(3, coment);
+			pstmt.setInt(4, price);
+			pstmt.setString(5, option);
+			
+			int result = pstmt.executeUpdate();
+			if (result == 1) {
+				System.out.println("history 추가 성공");
+				check = true;
+			} else {
+				System.out.println("history 추가 실패");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		
+		return check;
+	}
 }
