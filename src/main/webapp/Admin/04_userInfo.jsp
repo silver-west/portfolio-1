@@ -14,6 +14,10 @@
 				<td>닉네임</td>
 				<td>${userInfo.nickName}</td>
 			</tr>
+			<tr>
+				<td>보유 포인트</td>
+				<td>${point.myPoint}</td>
+			</tr>
 		</table>
 		<div align="center">
 			<button onclick="window.location.href='${contextPath}/UserControl.do'">돌아가기</button>
