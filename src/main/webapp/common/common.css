@@ -1,11 +1,92 @@
 @charset "UTF-8";
-body {
-  margin: 0;
-  padding: 0;
+
+/* font */
+@font-face {
+    font-family: 'NanumSquareRound';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
 
-div {
-	border: 1px solid lightgray;
-	padding: 10px;
-	margin: 0;
+/* div {
+    border: 1px solid black;
+} */
+
+/* font */
+/* .title, button, .navBar {
+    font-family: 'NanumSquareRound';
+} */
+body {
+    font-family: 'NanumSquareRound';
+} 
+
+/* top */
+.mainHeader {
+    height: 130px;
+}
+
+h1 {
+    line-height: 80px;
+    margin: 0;
+    color: white;
+}
+
+.top, .mainHeader {
+    background-color: #00809D;
+}
+
+.topBtn {
+    border: 1px solid #019fc3f6;
+}
+
+.navBar {
+	border-bottom: 1px solid #00809D;
+}
+
+.nav-item {
+    width: 120px;
+    height: 50px;
+}
+
+.nav-link {
+    color: #00809D;
+    font-size: large;
+}
+
+.nav-link:hover {
+    color: black; 
+}
+
+/*content Box*/
+.contentBox {
+    background-color: #cecece;
+    height: 700px;
+}
+
+
+/*content Box*/
+.contentBox {
+    background-color: #cecece;
+    height: 700px;
+}
+
+/*footer*/
+.footer {
+    background-color: rgb(86, 86, 86);
+    color: white;
+    height: 150px;
+}
+
+.link {
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.link:hover {
+    color: #cecece; 
+}
+
+.botTable {
+    line-height: 20px;
 }
