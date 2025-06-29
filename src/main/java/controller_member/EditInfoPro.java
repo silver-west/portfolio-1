@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import DB_member.Member;
 import DB_member.MemberDAO;
 
 @WebServlet("/EditInfoPro.do")
@@ -27,47 +26,50 @@ public class EditInfoPro extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("logId");
+		String beforeNick = (String)session.getAttribute("logNick");
 		String pw = request.getParameter("editPw");
-		String nickName = request.getParameter("editNick");
+		String editNick = request.getParameter("editNick");
 		
-		
-		String beforeNick = null;
+		boolean check = false;
+		boolean memberCheck = false;
 		boolean nickCheck = false;
-		try {
-			Member member = MemberDAO.instance.getMemberFromId(id);
-			beforeNick = member.getNickName();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		if (nickName.equals(beforeNick)) {
+		String editMent = null;
+		if (editNick.equals(beforeNick)) {
 			System.out.println("닉네임 수정X");
+			editMent = "현재 닉네임이랑 같습니다";
 		} else {
 			try {
-				nickCheck = MemberDAO.instance.findNick(nickName);
-				if (nickCheck) {
-					request.setAttribute("editMent2", "닉네임 중복");
+				memberCheck = MemberDAO.instance.findNick(editNick); //있으면 true
+				boolean adminCheck = MemberDAO.instance.nickCheck(editNick); //같으면 true
+				if (memberCheck || adminCheck) {
+					editMent = "중복된 닉네임 입니다.";
+				} else {
+					nickCheck = true;
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
 		
-		if (nickCheck == false) {
+		if (nickCheck) {
 			try {
-				boolean check = MemberDAO.instance.editMember(id, pw, nickName);
-				if (check) {
-					session.setAttribute("logNick", nickName);
+				boolean editcheck = MemberDAO.instance.editMember(id, pw, editNick);
+				if (editcheck) {
+					check = true;
+					session.setAttribute("logNick", editNick);
+				} else {
+					editMent = "시스템 오류";
 				}
-				request.setAttribute("infoEditCheck", check);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		
+		request.setAttribute("editMent", editMent);
+		request.setAttribute("infoEditCheck", check);
 		RequestDispatcher dis = request.getRequestDispatcher("/Member/07_editInfoPro.jsp");
 		dis.forward(request, response);
+
+		
 	}
 
 }

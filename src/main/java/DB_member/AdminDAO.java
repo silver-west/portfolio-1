@@ -108,30 +108,5 @@ public class AdminDAO {
 		return memberList;
 	}
 	
-	public boolean expelUser(String id) throws Exception {
-		boolean check = false;
-		
-		try {
-			getConn();
-			String sql = "DELETE FROM member WHERE id = ?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
-			
-			int result = pstmt.executeUpdate();
-			if (result == 1) {
-				System.out.println("회원 정보 삭제 성공");
-				check = true;
-			} else {
-				System.out.println("회원 정보 삭제 실패");
-			}
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			closeDB();
-		}
-		
-		return check;
-	}
 	
 }

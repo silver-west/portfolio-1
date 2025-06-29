@@ -8,6 +8,8 @@ import java.util.ArrayList;
 
 import DB_member.Member;
 import DB_member.MemberDAO;
+import DB_point.HistoryDAO;
+import DB_point.PointDAO;
 
 
 
@@ -39,6 +41,32 @@ public class BoardDAO {
 		if (rs != null) {
 			conn.close();
 		}
+	}
+	
+	public boolean delMyBoard(String id) throws Exception {
+		boolean check = false;
+		
+		try {
+			getConn();
+			String sql = "DELETE FROM board WHERE boardWriter = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			
+			int result = pstmt.executeUpdate();
+			if (result > 1) {
+				System.out.println("해당 아이디 게시글 전체 삭제 완료");
+				check = true;
+			} else {
+				System.out.println("해당 아이디 게시글 없음");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		
+		return check;
 	}
 	
 	public ArrayList<Board> getMyBoard(String id) throws Exception {
@@ -148,6 +176,7 @@ public class BoardDAO {
 	
 	public boolean addPost(String writer, String subject, String content) throws Exception {
 		boolean check = false;
+		boolean next = false;
 		
 		int postNum = getPostMaxNum() + 1;
 		
@@ -163,7 +192,7 @@ public class BoardDAO {
 			int result = pstmt.executeUpdate();
 			if (result == 1) {
 				System.out.println("게시글 추가 성공");
-				check = true;
+				next = true;
 			} else {
 				System.out.println("게시글 추가 실패");
 			}
@@ -172,6 +201,19 @@ public class BoardDAO {
 			e.printStackTrace();
 		} finally {
 			closeDB();
+		}
+		
+		if (next) {
+			boolean pointCheck = PointDAO.instance.updatePointToId(writer, 50, true);
+			boolean hisCheck = HistoryDAO.instance.addHistory(writer, "게시글 작성", 50, "plus");
+			if (pointCheck == false) {
+				System.out.println("포인트 업데이트 실패");
+			} else if (hisCheck == false) {
+				System.out.println("포인트 내역 업데이트 실패");
+			} else {
+				check = true;
+				System.out.println("글작성 -> 포인트 지급 성공");
+			}
 		}
 		
 		return check;
@@ -241,6 +283,31 @@ public class BoardDAO {
 			}
 		
 		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		
+		return check;
+	}
+	
+	public boolean postCheck(String id) throws Exception {
+		boolean check = false;
+		
+		try {
+			getConn();
+			String sql = "SELECT * FROM board WHERE boardWriter = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				System.out.println("postCheck - 작성 게시물 있음");
+				check = true;
+			} else {
+				System.out.println("postCheck - 작성 게시물 없음");
+			}
+		} catch(Exception e) {
 			e.printStackTrace();
 		} finally {
 			closeDB();

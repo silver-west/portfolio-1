@@ -88,6 +88,77 @@ public class PointDAO {
 		return check;
 	}
 	
+	public boolean joinPoint(String id) throws Exception {
+		boolean check = false;
+		boolean tableCheck = false;
+		boolean hisCheck = false;
+		
+		try {
+			getConn();
+			String sql = "INSERT INTO point_table VALUES (500, ?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			
+			int result = pstmt.executeUpdate();
+			if (result == 1) {
+				System.out.println("포인트 정보 추가 완료");
+				tableCheck = true;
+			} else {
+				System.out.println("포인트 정보 추가 실패");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		
+		if (tableCheck) {
+			hisCheck = HistoryDAO.instance.addHistory(id, "회원가입 축하 포인트", 500, "plus");
+			if (hisCheck) {
+				check = true;
+			}
+		}
+		
+		return check;
+	}
+	
+	public boolean delPointInfo(String id) throws Exception {
+		boolean check = false;
+		
+		boolean tableCheck = false;
+		boolean hisCheck = false;
+		
+		try {
+			getConn();
+			String sql = "DELETE FROM point_table WHERE id = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			
+			int result = pstmt.executeUpdate();
+			if (result > 0) {
+				System.out.println("포인트 정보 삭제 완료");
+				tableCheck = true;
+			} else {
+				System.out.println("포인트 정보 삭제 실패");
+			}
+			
+			if (tableCheck) {
+				hisCheck = HistoryDAO.instance.delHistory(id);
+				if (hisCheck) {
+					check = true;
+				}
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		
+		return check;
+	}
+	
 	public boolean updatePointToNick(String nick, int point, boolean opt) throws Exception {
 		boolean check = false;
 		

@@ -12,5 +12,5 @@
 			<h1>정보수정 실패</h1>
 		</c:otherwise>
 	</c:choose>
-	${editMent2}
+	<p>${editMent}</p>
 </div>

@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import DB_member.AdminDAO;
+import DB_member.MemberDAO;
 
 @WebServlet("/ExpelUser.do")
 public class ExpelUser extends HttpServlet {
@@ -19,9 +19,10 @@ public class ExpelUser extends HttpServlet {
 		System.out.println("== 회원 추방 페이지 ==");
 		
 		String userId = request.getParameter("userId");
+		
 		try {
-			boolean delCheck = AdminDAO.instance.expelUser(userId);
-			request.setAttribute("delCheck", delCheck);
+			boolean check = MemberDAO.instance.delMember(userId);
+			request.setAttribute("delCheck", check);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

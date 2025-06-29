@@ -116,4 +116,30 @@ public class HistoryDAO {
 		
 		return check;
 	}
+	
+	public boolean delHistory(String id) throws Exception {
+		boolean check = false;
+		
+		try {
+			getConn();
+			String sql = "DELETE FROM point_history WHERE history_id = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			
+			int result = pstmt.executeUpdate();
+			if (result > 0) {
+				System.out.println("해당 아이디 관련 포인트 기록 삭제 완료");
+				check = true;
+			} else {
+				System.out.println("해당 아이디 관련 포인트 기록 삭제 실패");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		
+		return check;
+	}
 }

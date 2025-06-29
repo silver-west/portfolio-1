@@ -5,6 +5,7 @@
 <jsp:include page="/common/00_intergration.jsp"></jsp:include>
 <div align="center">
 	<form method="post" action="${contextPath}/DelMemberPro.do">
+		탈퇴하면 회원님과 관련된 모든 정보(포인트, 게시글 등) 도 사라집니다.
 		<h3>정말 탈퇴하시겠습니까?</h3>
 		<table border="1">
 			<tr>

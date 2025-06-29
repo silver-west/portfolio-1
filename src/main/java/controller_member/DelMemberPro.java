@@ -21,44 +21,46 @@ public class DelMemberPro extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("=== 비밀번호 체크 ===");
+		System.out.println("=== 탈퇴 전 비밀번호 체크 ===");
 		
 		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("logId");
 		String pw = request.getParameter("inputPw");
 		
-		boolean next = false;
+		boolean check = false;
+		int result = 0;
 		
+		boolean pwCheck;
 		try {
-			boolean check = MemberDAO.instance.idAndPwCheck(id, pw);
-			if (check) {
-				next = true;
+			pwCheck = MemberDAO.instance.idAndPwCheck(id, pw);
+			if (pwCheck) {
+				boolean delCheck = MemberDAO.instance.delMember(id);
+				if (delCheck) {
+					check = true;
+				}
 			} else {
-				next = false;
+				result = 1; //비번 틀림
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		if (next) {
-			try {
-				boolean delCheck = MemberDAO.instance.delMember(id);
-				if (delCheck) {
-					session.setAttribute("logId", null);
-					session.setAttribute("logNick", null);
-					request.setAttribute("delCheck", delCheck);
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
 			
-			RequestDispatcher dis = request.getRequestDispatcher("/Member/09_DelMemberPro.jsp");
-			dis.forward(request, response);
-		} else {
+		if (result == 1) {
 			String path = request.getContextPath();
 			response.sendRedirect(path + "/DelMember.do");
+		} else {
+			if (check) {
+				session.setAttribute("logId", null);
+				session.setAttribute("logNick", null);
+			}
+			request.setAttribute("delCheck", check);
+			RequestDispatcher dis = request.getRequestDispatcher("/Member/09_DelMemberPro.jsp");
+			dis.forward(request, response);	
 		}
+		
 	}
-
+	
 }
+	
+
