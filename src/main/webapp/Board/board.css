@@ -7,7 +7,7 @@ a {
 }
 
 a:hover {
-	color: rgb(100, 23, 170);
+	color: #00809D;
 }
 
 /* text style */
@@ -44,10 +44,13 @@ td {
 .tdB {
 	font-weight: bold;
 	border-right: 1px solid lightgray;
+	white-space: nowrap;
 }
 
 .th {
 	font-weight: bold;
+	text-align: center;
+	white-space: nowrap;
 }
 
 .navDiv {

@@ -5,10 +5,10 @@
 <jsp:include page="/Board/02_mini_navi.jsp"></jsp:include>
 <body>
 	<div class="bg-white contentBox">
-		<div class="titleBox">
+		<div align="center" class="pt-3">
 	 		 <span class="boardTitle">글 목록</span>  
   		</div>
-  		<div align="center">
+  		<div align="center" class="table-responsive">
 			<table class="table tableForm">
                 <tr>
 					<td class="th" width="10%">번호</td>
@@ -41,6 +41,9 @@
 	</div>
 	<script>
 		$("document").ready(function(){
+			$(".miniheader").css("margin", "0");
+			$("table").addClass("mt-3 w-100");
+	
 			$("button").on("click", function(){
 				const url = $(this).data("url");
 				if (url) {
