@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <jsp:include page="/Board/02_mini_navi.jsp"></jsp:include>
-<div align="center">
+<div class="bg-white contentBox" align="center">
 	<h3>게시글 수정</h3>
 	<form action="${contextPath}/EditPostPro.do" method="post">
 		<table border="1">

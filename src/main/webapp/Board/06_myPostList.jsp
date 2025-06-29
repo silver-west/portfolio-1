@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <jsp:include page="/Board/02_mini_navi.jsp"></jsp:include>
-<div align="center">
+<div class="bg-white contentBox" align="center">
 <c:choose>
 	<c:when test="${empty myPostList}">
 		<h3>작성 게시글이 없습니다</h3>
