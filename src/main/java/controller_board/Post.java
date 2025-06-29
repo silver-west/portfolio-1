@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import DB_board.Board;
 import DB_board.BoardDAO;
+import DB_member.AdminDAO;
 import DB_member.Member;
 import DB_member.MemberDAO;
 
@@ -23,6 +24,7 @@ public class Post extends HttpServlet {
 		
 		String str = request.getParameter("boardNum");
 		int boardNum = Integer.parseInt(str);
+		int nextNum = 0;
 		
 		//조회수 올리기
 		try {
@@ -37,14 +39,20 @@ public class Post extends HttpServlet {
 			Board post = BoardDAO.instance.getPost(boardNum);
 			request.setAttribute("post", post);
 			
-			Member writer = MemberDAO.instance.getMemberFromId(post.getWriter());
-			request.setAttribute("writer", writer);
-			
+			if  (post.getWriter().equals("admin")) {
+				String writer = AdminDAO.instance.getAdminNick();
+				request.setAttribute("adminPost", writer);
+				nextNum = 1;
+			} else {
+				Member writer = MemberDAO.instance.getMemberFromId(post.getWriter());
+				request.setAttribute("writer", writer);
+				nextNum = 2;
+			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+		request.setAttribute("nextNum", nextNum);
 		
 		RequestDispatcher dis = request.getRequestDispatcher("/Board/03_postInfo.jsp");
 		dis.forward(request, response);

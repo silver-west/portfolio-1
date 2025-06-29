@@ -10,7 +10,10 @@
 			<td>제목</td>
 			<td>${post.subject}</td>
 			<td>작성자</td>
-			<td>${writer.nickName}</td>
+			<td>
+				<c:if test="${nextNum eq 1}">${adminPost}</c:if>
+				<c:if test="${nextNum eq 2}">${writer.nickName}</c:if>
+			</td>
 			<td>조회수</td>
 			<td>${post.readCount}</td>
 		</tr>
@@ -21,7 +24,7 @@
 		</tr>
 	</table>
 	<c:if test="${logId eq writer.id or logId eq 'admin'}">
-		<c:if test="${logId eq writer.id}">
+		<c:if test="${logId eq writer.id or nextNum eq 1}">
 			<button onclick="window.location.href='${contextPath}/EditPost.do?boardNum=${post.number}'">수정</button>		
 		</c:if>
 		<button onclick="window.location.href='${contextPath}/DelPost.do?boardNum=${post.number}'">삭제</button>

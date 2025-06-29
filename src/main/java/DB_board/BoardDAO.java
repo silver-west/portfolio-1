@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import DB_member.AdminDAO;
 import DB_member.Member;
 import DB_member.MemberDAO;
 import DB_point.HistoryDAO;
@@ -81,10 +82,17 @@ public class BoardDAO {
 			
 			while (rs.next()) {
 				//id -> nick 변환
-				Member writer = MemberDAO.instance.getMemberFromId(rs.getString(2));
-				String wirterNick = writer.getNickName();
+				String writerNick = null;
 				
-				Board board = new Board(rs.getInt(1), wirterNick, rs.getString(3), rs.getString(4), rs.getInt(5));
+				//관리자 확인
+				if (rs.getString(2).equals("admin")) {
+					writerNick = AdminDAO.instance.getAdminNick();
+				} else {
+					Member writer = MemberDAO.instance.getMemberFromId(rs.getString(2));
+					writerNick = writer.getNickName();
+				}
+				
+				Board board = new Board(rs.getInt(1), writerNick, rs.getString(3), rs.getString(4), rs.getInt(5));
 				myPostList.add(board);
 			}
 			
@@ -108,12 +116,17 @@ public class BoardDAO {
 			
 			while (rs.next()) {
 				//id -> nick 변환
-				System.out.println("rs.getString(2) : " + rs.getString(2));
+				String writerNick = null;
 				
-				Member writer = MemberDAO.instance.getMemberFromId(rs.getString(2));
-				String wirterNick = writer.getNickName();
+				//관리자 확인
+				if (rs.getString(2).equals("admin")) {
+					writerNick = AdminDAO.instance.getAdminNick();
+				} else {
+					Member writer = MemberDAO.instance.getMemberFromId(rs.getString(2));
+					writerNick = writer.getNickName();
+				}
 				
-				Board board = new Board(rs.getInt(1), wirterNick, rs.getString(3), rs.getString(4), rs.getInt(5));
+				Board board = new Board(rs.getInt(1), writerNick, rs.getString(3), rs.getString(4), rs.getInt(5));
 				boardList.add(board);
 			}
 			
@@ -202,6 +215,17 @@ public class BoardDAO {
 		} finally {
 			closeDB();
 		}
+		
+		if (writer.equals("admin")) {
+			if (next) {
+				System.out.println("관리자 글 작성 완료");
+				return true;				
+			} else {
+				System.out.println("관리자 글 작성 오류");
+				return false;
+			}
+		}
+		
 		
 		if (next) {
 			boolean pointCheck = PointDAO.instance.updatePointToId(writer, 50, true);

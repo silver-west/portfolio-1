@@ -17,6 +17,7 @@ public class Admin {
 	public void setAdminId(String adminId) {
 		this.adminId = adminId;
 	}
+	
 	public String getAdminPw() {
 		return adminPw;
 	}
