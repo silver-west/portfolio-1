@@ -31,9 +31,14 @@ public class JoinPro extends HttpServlet {
 		String joinNick = request.getParameter("joinNick");
 		
 		int check = 0;
-		
+		boolean next = false;
+		int adminCheck = 0;
 		try {
-			check = MemberDAO.instance.joinPro(joinId, joinPw, joinNick);
+			adminCheck = MemberDAO.instance.adminCheck(joinId, joinNick);
+			if (adminCheck == 0) {
+				next = true;
+				check = MemberDAO.instance.joinPro(joinId, joinPw, joinNick);
+			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -41,25 +46,43 @@ public class JoinPro extends HttpServlet {
 		
 		String joinMent = null;
 		Boolean joinCheck = false;
-		switch (check) {
-		case 1:
-			joinMent = "아이디 중복";
-			break;
-		case 2:
-			joinMent = "닉네임 중복";
-			break;
-		case 3:
-			joinMent = "시스템 오류";
-			break;
-		default:
-			joinCheck = true;
-			break;
+		if (next) {
+			switch (check) {
+			case 1:
+				joinMent = "아이디 중복";
+				break;
+			case 2:
+				joinMent = "닉네임 중복";
+				break;
+			case 3:
+				joinMent = "시스템 오류";
+				break;
+			case 4:
+				joinMent = "member 추가까지는 완료";
+				break;	
+			default:
+				joinCheck = true;
+				break;
+			}	
+		} else {
+			if (adminCheck == 1) {
+				joinMent = "아이디 중복";
+				check = 1;
+			} else {
+				joinMent = "닉네임 중복";
+				check = 2;
+			}
 		}
 		request.setAttribute("joinCheck", joinCheck);
 		request.setAttribute("joinMent", joinMent);
 		
-		RequestDispatcher dis = request.getRequestDispatcher("Member/02_joinPro.jsp");
-		dis.forward(request, response);	
+		if (check == 1 || check == 2) {
+			RequestDispatcher dis = request.getRequestDispatcher("Member/01_join.jsp");
+			dis.forward(request, response);	
+		} else {
+			RequestDispatcher dis = request.getRequestDispatcher("Member/02_joinPro.jsp");
+			dis.forward(request, response);	
+		}
 	}
 
 }

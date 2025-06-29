@@ -26,7 +26,7 @@
     </form>
   </div>
 </div>
-<!--js-->
+<!--Java script-->
 <script src="${contextPath}/Admin/js/01_login_Admin.js"></script>
 </body>
 <jsp:include page="/common/05_footer.jsp"></jsp:include>
