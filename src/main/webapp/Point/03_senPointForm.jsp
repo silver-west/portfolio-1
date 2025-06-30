@@ -3,13 +3,18 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <jsp:include page="/Point/02_mini_navi.jsp"></jsp:include>
-<div align="center">
-	<h1>포인트 보내기</h1>
-	<span>보유 포인트 : </span> <span>${user.myPoint}</span>
-	<div align="center">
-		<form action="${contextPath}/SendPointPro.do" method="post">
-			<table>
-				<tr>
+<body>
+<div class="bg-white contentBox" align="center">
+    <div align="center">
+	 	<span class="contentTitle">포인트 보내기</span>  
+  	</div>
+    <div>
+        <span id="pointMent">보유 포인트 : </span><span id="myPoint">${user.myPoint}</span>
+    </div>
+    <div>
+        <form id="sendForm" action="${contextPath}/SendPointPro.do" method="post">
+            <table>
+                <tr>
 					<td>선택</td>
 					<td>
 						<input type="radio" name="type" value="id" checked="checked" >아이디
@@ -27,10 +32,15 @@
 				<tr>
 					<td colspan="2" align="center">
 						<input type="hidden" name="sendUser" value="${user.id}">
-						<input type="submit" value="보내기">
+						<input id="submitBtn" type="submit" value="보내기">
 					</td>
 				</tr>
-			</table>
+            </table>
 		</form>
-	</div>
+		<div align="center">
+			<p id="ment" class="text-danger my-2"></p>
+		</div>
+    </div>
 </div>
+<script src="${contextPath}/Point/js/sendPoint.js"></script>
+</body>
