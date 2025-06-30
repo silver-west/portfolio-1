@@ -38,38 +38,6 @@ public class MemberDAO {
 		}
 	}
 	
-	public int adminCheck(String id, String nick) throws Exception {
-		int check = 0;
-		
-		try {
-			getConn();
-			String sql = "SELECT * FROM admin WHERE admin_id = ?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				System.out.println("아이디 중복");
-				check = 1; //id같음
-			} else {
-				sql = "SELECT * FROM admin WHERE nickname = ?";
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, nick);
-				rs = pstmt.executeQuery();
-				if (rs.next()) {
-					System.out.println("닉네임 중복");
-					check = 2; //닉넴같음
-				}	
-			}
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			closeDB();
-		}
-		
-		return check;
-	}
-	
 	public boolean findUser(String id) throws Exception {
 		boolean check = false;
 		
