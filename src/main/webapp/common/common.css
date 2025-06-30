@@ -1,0 +1,151 @@
+@charset "UTF-8";
+
+/* font */
+@font-face {
+    font-family: 'NanumSquareRound';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* div {
+    border: 1px solid black;
+} */
+
+/* font */
+/* .title, button, .navBar {
+    font-family: 'NanumSquareRound';
+} */
+body {
+    font-family: 'NanumSquareRound';
+    background-color: #cecece;
+    height: 1000px;
+} 
+
+/* top */
+.mainHeader {
+    height: 130px;
+}
+
+.title {
+    line-height: 80px;
+    margin: 0;
+    color: white;
+}
+
+.top, .mainHeader {
+    background-color: #00809D;
+}
+
+.topBtn {
+    border: 1px solid #019fc3f6;
+}
+
+#logDiv {
+	margin-top: 8px;
+	margin-right: 15px;
+	background-color: white;
+	border: 3px dotted #019fc3f6;
+	text-align: center;
+	line-height: 35px;
+	height: 40px;
+	width: 300px;
+}
+
+.navBar {
+	border-bottom: 1px solid #00809D;
+}
+
+.nav-item {
+    width: 120px;
+    height: 50px;
+}
+
+.nav-link {
+    color: #00809D;
+    font-size: large;
+}
+
+.nav-link:hover {
+    color: black; 
+}
+
+/*content Box*/
+
+.contentBox {
+    background-color: #cecece;
+    margin: 0 auto;
+    height: 70%;
+    width: 80%;
+}
+
+.content {
+	width: 80%;
+}
+
+.contentTitle {
+	text-align: center;
+	font-size: 30px;
+	margin-top: 40px;
+}
+
+.titleBox {
+	padding-top: 60px;
+	text-align: center;
+}
+
+
+/*footer*/
+.footer {
+    background-color: rgb(86, 86, 86);
+    color: white;
+    height: 150px;
+}
+
+.link {
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.link:hover {
+    color: #cecece; 
+}
+
+.botTable {
+    line-height: 20px;
+}
+
+
+/* other page  */
+.login-box {
+  width: 100%;
+  max-width: 300px;
+}
+
+.myBtn {
+    background-color: white !important;
+    border: 1px solid #00809D !important;
+    color: #00809D;
+}
+
+.myBtn:hover {
+	background-color: #00809D !important;
+	border: 1px solid #00809D !important;
+	color: white;
+}
+
+.myBtnGray {
+	background-color: white !important;
+    border: 1px solid lightgray !important;
+    color: black;
+}
+
+.joinForm {
+  width: 100%;
+  max-width: 300px;
+}
+
+.fL {
+	text-align: left;
+}

@@ -1,0 +1,342 @@
+package DB_board;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
+import DB_member.AdminDAO;
+import DB_member.Member;
+import DB_member.MemberDAO;
+import DB_point.HistoryDAO;
+import DB_point.PointDAO;
+
+
+
+public class BoardDAO {
+	public static BoardDAO instance = new BoardDAO();
+	
+	Connection conn = null;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+	
+	public Connection getConn() throws Exception {
+		String jdbcUrl = "jdbc:mysql://localhost:3306/p_data?serverTimezone=UTC&useSSL=false";
+		String dbId = "root";
+		String dbPw = "root";
+					
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		conn = DriverManager.getConnection(jdbcUrl, dbId, dbPw);
+		
+		return conn;
+	}
+	
+	public void closeDB() throws Exception{
+		if (conn != null) {
+			conn.close();
+		}
+		if (pstmt != null) {
+			conn.close();
+		}
+		if (rs != null) {
+			conn.close();
+		}
+	}
+	
+	public boolean delMyBoard(String id) throws Exception {
+		boolean check = false;
+		
+		try {
+			getConn();
+			String sql = "DELETE FROM board WHERE boardWriter = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			
+			int result = pstmt.executeUpdate();
+			if (result > 1) {
+				System.out.println("해당 아이디 게시글 전체 삭제 완료");
+				check = true;
+			} else {
+				System.out.println("해당 아이디 게시글 없음");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		
+		return check;
+	}
+	
+	public ArrayList<Board> getMyBoard(String id) throws Exception {
+		ArrayList<Board> myPostList = new ArrayList<Board>();
+		
+		try {
+			getConn();
+			String sql = "SELECT * FROM board WHERE boardWriter = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				//id -> nick 변환
+				String writerNick = null;
+				
+				//관리자 확인
+				if (rs.getString(2).equals("admin")) {
+					writerNick = AdminDAO.instance.getAdminNick();
+				} else {
+					Member writer = MemberDAO.instance.getMemberFromId(rs.getString(2));
+					writerNick = writer.getNickName();
+				}
+				
+				Board board = new Board(rs.getInt(1), writerNick, rs.getString(3), rs.getString(4), rs.getInt(5));
+				myPostList.add(board);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		
+		return myPostList;
+	}
+	
+	public ArrayList<Board> getBoard() throws Exception {
+		ArrayList<Board> boardList = new ArrayList<Board>();
+		
+		try {
+			getConn();
+			String sql = "SELECT * FROM board";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				//id -> nick 변환
+				String writerNick = null;
+				
+				//관리자 확인
+				if (rs.getString(2).equals("admin")) {
+					writerNick = AdminDAO.instance.getAdminNick();
+				} else {
+					Member writer = MemberDAO.instance.getMemberFromId(rs.getString(2));
+					writerNick = writer.getNickName();
+				}
+				
+				Board board = new Board(rs.getInt(1), writerNick, rs.getString(3), rs.getString(4), rs.getInt(5));
+				boardList.add(board);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		
+		return boardList;
+	}
+	
+	public Board getPost(int number) throws Exception {
+		Board post = null;
+		
+		try {
+			getConn();
+			String sql = "SELECT * FROM board WHERE boardNo = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, number);
+			
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				System.out.println("게시글 검색 성공");
+				post = new Board(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5));
+				
+			} else {
+				System.out.println("게시글 검색 실패");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		
+		return post;
+	}
+	
+	public int getPostMaxNum() throws Exception {
+		int maxNum = 0;
+		
+		try {
+			getConn();
+			String sql = "SELECT MAX(boardNo) FROM board";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				maxNum = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		
+		return maxNum;
+	}
+	
+	public boolean addPost(String writer, String subject, String content) throws Exception {
+		boolean check = false;
+		boolean next = false;
+		
+		int postNum = getPostMaxNum() + 1;
+		
+		try {
+			getConn();
+			String sql = "INSERT INTO board VALUES(?, ?, ?, ?, 0)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, postNum);
+			pstmt.setString(2, writer);
+			pstmt.setString(3, subject);
+			pstmt.setString(4, content);
+			
+			int result = pstmt.executeUpdate();
+			if (result == 1) {
+				System.out.println("게시글 추가 성공");
+				next = true;
+			} else {
+				System.out.println("게시글 추가 실패");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		
+		if (writer.equals("admin")) {
+			if (next) {
+				System.out.println("관리자 글 작성 완료");
+				return true;				
+			} else {
+				System.out.println("관리자 글 작성 오류");
+				return false;
+			}
+		}
+		
+		
+		if (next) {
+			boolean pointCheck = PointDAO.instance.updatePointToId(writer, 50, true);
+			boolean hisCheck = HistoryDAO.instance.addHistory(writer, "게시글 작성", 50, "plus");
+			if (pointCheck == false) {
+				System.out.println("포인트 업데이트 실패");
+			} else if (hisCheck == false) {
+				System.out.println("포인트 내역 업데이트 실패");
+			} else {
+				check = true;
+				System.out.println("글작성 -> 포인트 지급 성공");
+			}
+		}
+		
+		return check;
+	}
+	
+	public void upReadCount(int boardNum) throws Exception {
+		try {
+			getConn();
+			String sql = "UPDATE board SET boardReadCount = boardReadCount + 1 WHERE boardNo = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, boardNum);
+			
+			int result = pstmt.executeUpdate();
+			if (result == 1) {
+				System.out.println("조회수 올리기 완료");
+			} else {
+				System.out.println("조회수 올리기 실패");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+	}
+	
+	public boolean delPost(int boardNum) throws Exception {
+		boolean check = false;
+		try {
+			getConn();
+			String sql = "DELETE FROM board WHERE boardNo = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, boardNum);
+			
+			int result = pstmt.executeUpdate();
+			if (result == 1) {
+				System.out.println("게시글 삭제 완료");
+				check = true;
+			} else {
+				System.out.println("게시글 삭제 실패");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		
+		return check;
+	}
+	
+	public boolean editPost(int boardNum, String subject, String content) throws Exception {
+		boolean check = false;
+		try {
+			getConn();
+			String sql = "UPDATE board SET boardSubject = ?, boardContent =? WHERE boardNo = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, subject);
+			pstmt.setString(2, content);
+			pstmt.setInt(3, boardNum);
+			int result = pstmt.executeUpdate();
+			
+			if (result == 1) {
+				System.out.println("게시글 수정 완료");
+				check = true;
+			} else {
+				System.out.println("게시글 수정 실패");
+			}
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		
+		return check;
+	}
+	
+	public boolean postCheck(String id) throws Exception {
+		boolean check = false;
+		
+		try {
+			getConn();
+			String sql = "SELECT * FROM board WHERE boardWriter = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				System.out.println("postCheck - 작성 게시물 있음");
+				check = true;
+			} else {
+				System.out.println("postCheck - 작성 게시물 없음");
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		
+		return check;
+	}
+}
