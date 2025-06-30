@@ -47,14 +47,19 @@ public class DelMemberPro extends HttpServlet {
 		}
 			
 		if (result == 1) {
-			String path = request.getContextPath();
-			response.sendRedirect(path + "/DelMember.do");
+			request.setAttribute("checkMent", "비밀번호가 틀립니다");
+			RequestDispatcher dis = request.getRequestDispatcher("/Member/08_pwCheckForDel.jsp");
+			dis.forward(request, response);	
+			
 		} else {
 			if (check) {
 				session.setAttribute("logId", null);
 				session.setAttribute("logNick", null);
+				
+				request.setAttribute("delCheck", check);
+			} else {
+				request.setAttribute("checkMent", "시스템 오류");
 			}
-			request.setAttribute("delCheck", check);
 			RequestDispatcher dis = request.getRequestDispatcher("/Member/09_DelMemberPro.jsp");
 			dis.forward(request, response);	
 		}

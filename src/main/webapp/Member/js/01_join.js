@@ -14,7 +14,7 @@ $(document).ready(function(){
 
     //태그 속성
     $("#joinId").attr({
-        "placeholder" : "비밀번호를 입력하세요",
+        "placeholder" : "아이디를 입력하세요",
         "type" : "text"
     });
 

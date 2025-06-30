@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <jsp:include page="/common/00_intergration.jsp"></jsp:include>
+<body>
 <div class="bg-white contentBox" align="center">
 	<c:choose>
 		<c:when test="${joinCheck eq true}">
@@ -18,3 +19,4 @@
 		</c:otherwise>
 	</c:choose>
 </div>
+</body>

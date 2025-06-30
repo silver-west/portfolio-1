@@ -1,0 +1,106 @@
+@charset "UTF-8";
+@charset "UTF-8";
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+a:hover {
+	color: #00809D;
+}
+
+/* text style */
+.boardTitle {
+	text-align: center;
+	font-size: 23px;
+	margin-top: 40px;
+}
+
+.coment {
+	font-size: 13px;
+	color: darkgray;
+}
+
+/* form */
+.login-box {
+  width: 100%;
+  max-width: 300px;
+}
+
+.tableForm {
+	margin-top: 40px;
+	width: 100%;
+	max-width: 700px;
+	text-align: center;
+	border-bottom: none;
+}
+
+td {
+	border-bottom: 1px solid lightgrey;
+	padding: 3px;
+}
+
+.tdB {
+	font-weight: bold;
+	border-right: 1px solid lightgray;
+	white-space: nowrap;
+}
+
+.th {
+	font-weight: bold;
+	text-align: center;
+	white-space: nowrap;
+}
+
+.navDiv {
+	margin-top: 40px;
+	border: 1px solid lightgrey;
+	text-align: center;
+	padding: 3px;
+	width: 40%;
+}
+
+.navTable {
+	text-align: center;
+	margin: 0 auto;
+	border: 1px solid lightgrey;
+	width: 100%;
+	height: 40px;
+	
+}
+
+.miniHeader {
+	height: 200px;
+	width: 80%;
+	margin: 0 auto;
+}
+
+/* 버튼 */
+.myBtn {
+    background-color: white !important;
+    border: 1px solid #00809D !important;
+    color: #00809D;
+}
+
+.myBtn:hover {
+	background-color: #00809D !important;
+	border: 1px solid #00809D !important;
+	color: white;
+}
+
+.myBtnGray {
+	background-color: white !important;
+    border: 1px solid lightgray !important;
+    color: black;
+}
+
+/* link */
+.navLink {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+	
+}
+
+

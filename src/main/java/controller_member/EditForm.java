@@ -53,8 +53,11 @@ System.out.println("=== 비밀번호 체크 ===");
 			RequestDispatcher dis = request.getRequestDispatcher("/Member/06_editInfo.jsp");
 			dis.forward(request, response);
 		} else {
-			String path = request.getContextPath();
-			response.sendRedirect(path + "/EditInfo.do");
+			request.setAttribute("checkMent", "틀린 비밀번호 입니다");
+			
+			RequestDispatcher dis = request.getRequestDispatcher("/Member/05_pwCheck.jsp");
+			dis.forward(request, response);
+			
 		}
 	}
 
