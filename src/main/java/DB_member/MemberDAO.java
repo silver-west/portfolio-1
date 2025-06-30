@@ -214,21 +214,9 @@ public class MemberDAO {
 		
 	}
 	
-	public int joinPro(String id, String pw, String nickName) throws Exception {
-		int check = 0;
-		
-		boolean idCheck = findUser(id);
-		if (idCheck) {
-			check = 1;
-			return check;
-		}
-		
-		boolean nickCheck = findNick(nickName);
-		if (nickCheck) {
-			check = 2;
-			return check;
-		}
-		
+	public boolean joinPro(String id, String pw, String nickName) throws Exception {
+		boolean check = false;
+		boolean next = false;
 		try {
 			getConn();
 			
@@ -241,10 +229,9 @@ public class MemberDAO {
 			int result = pstmt.executeUpdate();
 			if (result == 1) {
 				System.out.println("DB insert complete");
-				check = 4;
+				next = true;
 			} else {
 				System.out.println("DB insert failed");
-				check = 3;
 			}
 			
 		} catch (Exception e) {
@@ -253,14 +240,11 @@ public class MemberDAO {
 			closeDB();
 		}
 		
-		if (check == 4) {
-			//포인트
-			boolean pointCheck = PointDAO.instance.joinPoint(id);
-			if (pointCheck) {
-				check = 5;
-			}
+		if (next) {
+			//포인트 데이터 생성 + 지급
+			check = PointDAO.instance.joinPoint(id);
 		}
-		System.out.println("회원가입 상태 :  " + check);
+		
 		return check;
 	}
 	

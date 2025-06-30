@@ -14,8 +14,10 @@
 		<c:otherwise>
 			<div class="titleBox">
 	 		 	<span class="contentTitle">❌ 회원가입 실패</span>
-	 		 	<span>${joinMent }</span>
   			</div> 
+  			<div>
+  				<span class="coment my-3">시스템 오류</span>
+  			</div>
 		</c:otherwise>
 	</c:choose>
 </div>
