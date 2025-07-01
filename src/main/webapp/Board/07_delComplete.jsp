@@ -8,11 +8,7 @@
 	<c:choose>
 		<c:when test="${delPostCheck eq true}">
 			<div class="titleBox">
-		 		 <span class="contentTitle">⭕ 게시글 삭제 성공</span>
-		 		 <div align="center">
-					<button class="myBtn btn my-4 transBtn" data-url="${contextPath}/BoardMain.do">게시글 목록</button>
-					<button class="myBtn btn my-4 transBtn" data-url="${contextPath}/MyPostList.do">작성글 목록</button>
-				</div>   
+		 		 <span class="contentTitle">⭕ 게시글 삭제 성공</span> 
 	  		</div> 
 		</c:when>
 		<c:otherwise>
@@ -23,11 +19,15 @@
 		 		 </div>  
 	  		</div> 
 		</c:otherwise>
-	</c:choose>   
+	</c:choose>
+	<div align="center">
+		<button class="myBtn btn my-4 transBtn" data-url="${contextPath}/BoardMain.do">게시글 목록</button>
+		<button class="myBtn btn my-4 transBtn" data-url="${contextPath}/MyPostList.do">작성글 목록</button>
+	</div>     
 </div>
 <script>
 	$(document).ready(function() {
-		$(".tansBtn").on("click", function() {
+		$(".transBtn").on("click", function() {
 			let url = $(this).data("url");
 			if (url) {
 				window.location.href = url;
