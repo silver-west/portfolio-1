@@ -10,10 +10,10 @@ $("document").ready(function(){
     	e.preventDefault();
     	
     	const myPoint = Number($("#myPoint").text());
-    	console.log(myPoint);
     	
     	const send = $("[name='sendUser']").val();
-    	let $recieve = $("[name='recieve']");
+    	let $recieve = $("input[name='recieve']");
+        console.log($recieve.val());
     	let $sendPoint = $("[name='sendPoint']");
     	
     	//null
@@ -42,8 +42,8 @@ $("document").ready(function(){
     	//point
     	let sendPoint = Number($sendPoint.val());
     	console.log(sendPoint);
-    	
-    	if (sendPoint <= 0) {
+
+        if (sendPoint <= 0) {
 			$sendPoint.focus();
     		$("#ment").text("1 포인트 이상으로 입력해주세요");
     		
@@ -56,10 +56,45 @@ $("document").ready(function(){
     		
     		return;
     	}
-    	
-    	$("form").submit();
-    	
+
+        //받는 유저 확인
+        let recieve = $recieve.val();
+        let booleanRecieve = false;
+        let userType = $("input[name='type']:checked").val();
+
+        let transUrl = "";
+        let dataKey = "";
+        let mentKey = "";
+        if (userType == "id") {
+            transUrl = "IdCheck.do";
+            dataKey = "id";
+            mentKey = "아이디";
+        } else if (userType == "nick") {
+            transUrl = "NickCheck.do";
+            dataKey = "nick";
+            mentKey = "닉네임";
+        }
+
+        $.ajax({
+            url: transUrl,
+            method: "POST",
+            data: { [dataKey]: recieve },
+            success: function(response) {
+                if (response == "duplicate") {
+                    booleanRecieve = true;
+                    $("#ment").text("");
+                    $("form").submit();
+                } else {
+                    booleanRecieve = false;
+                    $("#ment").text(`받는 분에 해당하는 ${mentKey}이 없습니다`);
+                    return;
+                }
+            }
+        });
+
+
     });
+
 });
 
 	function nullCheck(obj) {

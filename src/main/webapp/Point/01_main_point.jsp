@@ -17,7 +17,7 @@
 <div class="bg-white contentBox" align="center">
     <div>
         <form action="${contextPath}/PointMain.do">
-        	<table class="w-100" id="pointTable">
+        	<table class="table-responsive" id="pointTable">
         		<tr>
         			<td width="40%">
 					    <p id="myPoint" class="px-3">${logNick}님 보유 포인트 : ${totalPoint}</p>        			
