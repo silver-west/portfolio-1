@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <div class="mainHeader container-fluid d-flex justify-content-center py-4">
-        <h1 class="title fw-bold">Silver's Portfolio Page</h1>
+        <h1 class="title fw-bold">Portfolio Page</h1>
 </div>
 <script>
 	$("document").ready(function() {
