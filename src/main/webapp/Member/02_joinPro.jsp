@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <jsp:include page="/common/00_intergration.jsp"></jsp:include>
+<body>
 <div class="bg-white contentBox" align="center">
 	<c:choose>
 		<c:when test="${joinCheck eq true}">
@@ -13,8 +14,11 @@
 		<c:otherwise>
 			<div class="titleBox">
 	 		 	<span class="contentTitle">❌ 회원가입 실패</span>
-	 		 	<span>${joinMent }</span>
   			</div> 
+  			<div>
+  				<span class="coment my-3">시스템 오류</span>
+  			</div>
 		</c:otherwise>
 	</c:choose>
 </div>
+</body>

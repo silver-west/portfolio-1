@@ -38,38 +38,6 @@ public class MemberDAO {
 		}
 	}
 	
-	public int adminCheck(String id, String nick) throws Exception {
-		int check = 0;
-		
-		try {
-			getConn();
-			String sql = "SELECT * FROM admin WHERE admin_id = ?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				System.out.println("아이디 중복");
-				check = 1; //id같음
-			} else {
-				sql = "SELECT * FROM admin WHERE nickname = ?";
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, nick);
-				rs = pstmt.executeQuery();
-				if (rs.next()) {
-					System.out.println("닉네임 중복");
-					check = 2; //닉넴같음
-				}	
-			}
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			closeDB();
-		}
-		
-		return check;
-	}
-	
 	public boolean findUser(String id) throws Exception {
 		boolean check = false;
 		
@@ -214,21 +182,9 @@ public class MemberDAO {
 		
 	}
 	
-	public int joinPro(String id, String pw, String nickName) throws Exception {
-		int check = 0;
-		
-		boolean idCheck = findUser(id);
-		if (idCheck) {
-			check = 1;
-			return check;
-		}
-		
-		boolean nickCheck = findNick(nickName);
-		if (nickCheck) {
-			check = 2;
-			return check;
-		}
-		
+	public boolean joinPro(String id, String pw, String nickName) throws Exception {
+		boolean check = false;
+		boolean next = false;
 		try {
 			getConn();
 			
@@ -241,10 +197,9 @@ public class MemberDAO {
 			int result = pstmt.executeUpdate();
 			if (result == 1) {
 				System.out.println("DB insert complete");
-				check = 4;
+				next = true;
 			} else {
 				System.out.println("DB insert failed");
-				check = 3;
 			}
 			
 		} catch (Exception e) {
@@ -253,14 +208,11 @@ public class MemberDAO {
 			closeDB();
 		}
 		
-		if (check == 4) {
-			//포인트
-			boolean pointCheck = PointDAO.instance.joinPoint(id);
-			if (pointCheck) {
-				check = 5;
-			}
+		if (next) {
+			//포인트 데이터 생성 + 지급
+			check = PointDAO.instance.joinPoint(id);
 		}
-		System.out.println("회원가입 상태 :  " + check);
+		
 		return check;
 	}
 	

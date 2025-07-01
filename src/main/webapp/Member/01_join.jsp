@@ -13,7 +13,7 @@
 	        <label for="joinId">아이디</label>
 	        <div class="input-group">
 	        <input class="form-control" id="joinId" name="joinId">
-	        <button class="idCheck">중복확인</button>
+	        <button class="idCheck" type="button">중복확인</button>
 	        </div>
             <p id="mentId"></p>
 	    </div>
@@ -31,15 +31,17 @@
 	        <label for="joinNick">닉네임</label>
 	        <div class="input-group">
 	        <input class="form-control" id="joinNick" name="joinNick">
-	        <button class="nickCheck">중복확인</button>
+	        <button class="nickCheck" type="button">중복확인</button>
 	        </div>
             <p id="mentNick"></p>
 	    </div>
+	    <div align="center">
+	    	<p id="ment" class="my-3"></p>
+	    </div>
 	    <div class="joinForm" align="center">
-	        <button type="submit" class="myBtn btn my-3">가입하기</button>
+	        <button id="submitBtn" type="submit" class="myBtn btn my-3">가입하기</button>
 	    </div>
     </form>
-    <p id="ment">${joinMent}</p>
 </div>
 <!-- Java script -->
 <script src="${contextPath}/Member/js/01_join.js"></script>

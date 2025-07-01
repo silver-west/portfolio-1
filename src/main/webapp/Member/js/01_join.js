@@ -4,17 +4,20 @@ var booleanPw = false;
 var booleanRe = false;
 var booleanNick = false;
 
+let idDupCheck = false;
+let nickDupCheck = false;
+
 $(document).ready(function(){
     //bootStrap
     $("label").addClass("form-label text-start w-100");
     $(".idCheck, .nickCheck").addClass("btn btn-secondary");
-    $("#mentId, #mentPw, #mentRe, #mentNick").addClass("mt-2 text-danger text-start w-100");
-    $("#ment").addClass("mt-2 text-danger fs-3");
+    $("#mentId, #mentPw, #mentRe, #mentNick").addClass("mt-2 text-start w-100");
+    $("#ment").addClass("mt-2 text-danger");
 
 
     //태그 속성
     $("#joinId").attr({
-        "placeholder" : "비밀번호를 입력하세요",
+        "placeholder" : "아이디를 입력하세요",
         "type" : "text"
     });
 
@@ -45,15 +48,46 @@ $(document).ready(function(){
     });
 
     $(".idCheck").click(function(e) { //중복체크 (나중에..)
-        e.preventDefault();
+        let inputId = $("#joinId").val();
 
+        $.ajax({
+            url: "IdCheck.do",
+            method: "POST",
+            data: { id: inputId },
+            success: function (response) {
+                if (response == "pass") {
+                    idDupCheck = true;
+                    $("#mentId").removeClass("text-danger").addClass("text-success");
+                    $("#mentId").text("아이디 생성 가능");
+                } else {
+                    idDupCheck = false;
+                    $("#mentId").removeClass("text-success").addClass("text-danger");
+                    $("#mentId").text("중복된 아이디 입니다.");
+                }
+            }
+        });
                 
     });
     
     $(".nickCheck").click(function(e) { //중복체크 (나중에..)
-        e.preventDefault();
+        let inputNick = $("#joinNick").val();
 
-                
+        $.ajax({
+            url: "NickCheck.do",
+            method: "POST",
+            data: { nick: inputNick },
+            success: function (response) {
+                if (response == "pass") {
+                    nickDupCheck = true;
+                    $("#mentNick").removeClass("text-danger").addClass("text-success");
+                    $("#mentNick").text("닉네임 설정 가능");
+                } else {
+                    nickDupCheck = false;
+                    $("#mentNick").removeClass("text-success").addClass("text-danger");
+                    $("#mentNick").text("중복된 닉네임 입니다.");
+                }
+            }
+        });          
     });
 
     $("#joinPw").blur(function(){
@@ -93,14 +127,26 @@ $(document).ready(function(){
     });
 
 
-    $(".myBtn").click(function(e) {
+   $("#submitBtn").click(function(e) {
         e.preventDefault();
 
         if (formCheck()) {
-            $("form").submit();
+            if (!idDupCheck) {
+				$("#ment").text("아이디 중복 체크 확인");
+				return;
+			} else {
+				$("#ment").text("");
+			}
+			
+			if (!nickDupCheck) {
+				$("#ment").text("닉네임 중복 체크 확인");
+				return;
+			} else {
+				$("#ment").text("");
+			}
+			
+			$("form").submit();
         }
-        
-        
     
     });
 

@@ -25,7 +25,6 @@
 		</c:otherwise>
 	</c:choose>   
 </div>
-
 <script>
 	$(document).ready(function() {
 		$(".tansBtn").on("click", function() {

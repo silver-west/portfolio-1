@@ -108,5 +108,50 @@ public class AdminDAO {
 		return memberList;
 	}
 	
+	public boolean adminCheckFromId(String id) throws Exception {
+		boolean check = false;
+		
+		try {
+			getConn();
+			String sql = "SELECT * FROM admin WHERE admin_id = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				check = true;
+			} 
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		
+		return check;
+	}
+	
+	public boolean adminCheckFromNick(String nick) throws Exception {
+		boolean check = false;
+		
+		try {
+			getConn();
+			String sql = "SELECT * FROM admin WHERE nickname = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, nick);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				check = true;
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		
+		return check;
+	}
+	
 	
 }

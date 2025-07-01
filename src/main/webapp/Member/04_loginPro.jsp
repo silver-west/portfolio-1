@@ -3,13 +3,32 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <jsp:include page="/common/00_intergration.jsp"></jsp:include>
-<div align="center">
+<body>
+<div class="bg-white contentBox" align="center">
 	<c:choose>
 		<c:when test="${!empty logId}">
-			<h1>로그인 성공</h1>
+			<div class="titleBox">
+	 		    <span class="contentTitle">⭕ 로그인 성공</span>  
+  		    	<div align="center" class="mt-3">
+					<a href="{contextPath}/Main.do">메인화면</a>
+				</div>
+  		    </div>
 		</c:when>
 		<c:otherwise>
-			<h1>로그인 실패</h1>
+			<div class="titleBox">
+	 		    <span class="contentTitle">❌ 로그인 실패</span>  
+  		    </div>
+  		    <div align="center" class="mt-3">
+				<a id="pageLink" href="{contextPath}/Login.do">로그인 화면</a>
+				<a id="pageLink" href="{contextPath}/Main.do">메인화면</a>
+			</div>
 		</c:otherwise>
 	</c:choose>
 </div>
+<script>
+	$("document").ready(function(){
+		$("#pageLink").addClass("mx-3");
+	});
+</script>
+</body>
+
