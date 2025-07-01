@@ -22,5 +22,19 @@
   			</div> 
 		</c:otherwise>
 	</c:choose>
+	<div align="center">
+		<button class="myBtn btn my-4 transBtn" data-url="${contextPath}/PointIndex.do">포인트 내역</button>
+		<button class="myBtn btn my-4 transBtn" data-url="${contextPath}/SendPoint.do">포인트 전송</button>
+	</div> 
 </div>
+<script>
+$(document).ready(function() {
+	$(".transBtn").on("click", function(){
+	let url = $(this).data("url");
+		if (url) {
+			window.location.href = url;
+		}
+	});
+});
+</script>
 </body>
