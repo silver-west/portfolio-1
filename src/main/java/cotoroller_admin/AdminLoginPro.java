@@ -35,7 +35,9 @@ public class AdminLoginPro extends HttpServlet {
 				HttpSession session = request.getSession();
 				session.setAttribute("logId", loginId);
 				session.setAttribute("logNick", adminNick);
-			} 
+			} else {
+				System.out.println("관리자 로그인 시도");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
