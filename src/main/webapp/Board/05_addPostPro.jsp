@@ -7,9 +7,21 @@
 	<div class="bg-white contentBox" align="center">
 		<div class="titleBox">
 	 		 <span class="contentTitle">❌ 게시글 추가 실패</span>  
-  		</div>
-  		<div class="my-5">
-	  		<a href="${contextPath}/BoardMain.do">돌아가기</a>      		
+  		<div align="center">
+			<button class="myBtn btn my-4 transBtn" data-url="${contextPath}/AddPost.do">재작성</button>
+			<button class="myBtn btn my-4 transBtn" data-url="${contextPath}/BoardMain.do">목록</button>
+		</div> 
   		</div>
 	</div>
+	
+	<script>
+		$("document").ready(function(){
+			$(".transBtn").on("click", function() {
+				let url = $(this).data("url");
+				if (url) {
+					window.location.href = url;
+				}
+			});
+		});
+	</script>
 </body>

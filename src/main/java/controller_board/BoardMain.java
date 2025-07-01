@@ -37,6 +37,7 @@ public class BoardMain extends HttpServlet {
 		int postCount = (int)session.getAttribute("postCount");
 		int btnCount = (int)session.getAttribute("btnCount");
 		
+		
 		//1. 게시글
 		int startIdx = (currentPage - 1) * postCount;
 		int endIdx = startIdx + postCount;

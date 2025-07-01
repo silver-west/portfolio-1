@@ -8,14 +8,32 @@
 	<c:choose>
 		<c:when test="${delPostCheck eq true}">
 			<div class="titleBox">
-		 		 <span class="contentTitle">⭕ 게시글 삭제 성공</span>  
+		 		 <span class="contentTitle">⭕ 게시글 삭제 성공</span>
+		 		 <div align="center">
+					<button class="myBtn btn my-4 transBtn" data-url="${contextPath}/BoardMain.do">게시글 목록</button>
+					<button class="myBtn btn my-4 transBtn" data-url="${contextPath}/MyPostList.do">작성글 목록</button>
+				</div>   
 	  		</div> 
 		</c:when>
 		<c:otherwise>
 			<div class="titleBox">
-		 		 <span class="contentTitle">❌ 게시글 삭제 실패</span>  
+		 		 <span class="contentTitle">❌ 게시글 삭제 실패</span>
+		 		 <div>
+		 		 	<p class="text-danger my-3">시스템 오류</p>
+		 		 </div>  
 	  		</div> 
 		</c:otherwise>
 	</c:choose>   
 </div>
+
+<script>
+	$(document).ready(function() {
+		$(".tansBtn").on("click", function() {
+			let url = $(this).data("url");
+			if (url) {
+				window.location.href = url;
+			}
+		});
+	});
+</script>
 </body>

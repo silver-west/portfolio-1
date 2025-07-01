@@ -74,7 +74,8 @@ CREATE TABLE point_store(
 	item_name varchar(100),
     item_price int,
     item_cmt varchar(50),
-    item_total int
+    item_total int,
+    item_path varchar(100)
 );
 
 INSERT INTO point_store  VALUES(1, '아이템1', 300, '아이템 설명1 입니다.', 30);

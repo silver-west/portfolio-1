@@ -36,20 +36,22 @@
             </tr>
         </table>
     </div>    
-	<c:if test="${logId eq writer.id or logId eq 'admin'}">
         <div>
+		<c:if test="${logId eq writer.id or logId eq 'admin'}">
             <c:if test="${logId eq writer.id or nextNum eq 1}">
                 <button id="editBtn" data-url='${contextPath}/EditPost.do?boardNum=${post.number}'>수정</button>		
             </c:if>
                 <button id="delBtn" data-url='${contextPath}/DelPost.do?boardNum=${post.number}'>삭제</button>
+		</c:if>
+				<button id="backBtn" onclick="history.back()">이전</button>
         </div>
-	</c:if>
 
     <script>
         $("document").ready(function(){
         	$("button").addClass("my-3 mx-2");
         	$("#editBtn").addClass("btn btn-outline-success");
             $("#delBtn").addClass("btn btn-outline-danger");
+            $("#backBtn").addClass("btn btn-outline-warning");
         	$(".th").css("white-space", "nowrap");
             
             $("button").on("click", function(){

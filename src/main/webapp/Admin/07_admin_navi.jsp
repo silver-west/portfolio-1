@@ -14,7 +14,7 @@
             <a href="#" class="nav-link">준비중</a>
         </div>
         <div class="nav-item col-6 col-sm-3 p-1">
-            <a href="#" class="nav-link">준비중</a>
+            <a href="${contextPath}/Admin.do" class="nav-link">관리자 메인</a>
         </div>
     </div>
 </div>
