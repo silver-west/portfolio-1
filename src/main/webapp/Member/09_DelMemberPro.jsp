@@ -7,18 +7,19 @@
 <div class="bg-white contentBox" align="center">
 	<c:choose>
 		<c:when test="${delCheck eq true}">
-			<div class="titleBox">
-	 		 	<span class="contentTitle">⭕ 탈퇴 성공 . . .</span>  
-  			</div>  
+			<script>
+				alert("탈퇴 성공. . .");
+				location.href = "${contextPath}/Main.do";
+			</script>
 		</c:when>
 		<c:otherwise>
 			<div class="titleBox">
 	 		 	<span class="contentTitle">❌ 탈퇴 실패</span>
+				<div align="center" class="mt-3">
+			        <p class="text-danger">시스템 오류</p>
+			    </div>
   			</div> 
 		</c:otherwise>
 	</c:choose>
-	<div align="center">
-        <p class="text-danger my-3">${checkMent}</p>
-    </div>
 </div>
 </body>

@@ -33,13 +33,30 @@ $("document").ready(function(){
 	
 	$("#submitBtn").click(function(e) {
 		e.preventDefault();
+		
+		let inputPw = $("#inputPw").val();
 
 		if (nullCheck($("#inputPw"))) {
             $("#inputPw").focus();
             $("#mentPw").text("비밀번호를 입력하세요");
-        } else {
-            $("form").submit();
+          
+            return;
         }
+		
+		$.ajax({
+			url: "PwCheck.do",
+			method: "POST",
+			data: { pw: inputPw },
+			success: function (response) {
+				if (response == "pass") {
+					$("form").submit();
+				} else {
+					$("#mentPw").text("틀린 비밀번호 입니다");
+				}
+			}
+		});
+		
+		
 	});
 });
 
