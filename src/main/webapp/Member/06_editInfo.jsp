@@ -35,7 +35,9 @@
 	        <button id="submitBtn" type="submit" class="myBtn btn my-3">수정하기</button>
 	    </div>
     </form>
-    <p id="ment">${joinMent}</p>
+    <div class="mt-2" align="center">
+    	<p id="ment" class="text-danger"></p>
+    </div>
 </div>
 <!--Java Script -->
 <script src="${contextPath}/Member/js/03_editInfo.js"></script>

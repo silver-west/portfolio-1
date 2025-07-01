@@ -6,20 +6,21 @@
 <body>
 <div class="bg-white contentBox" align="center">
 	<c:choose>
-		<c:when test="${infoEditCheck eq true}">
-			<div class="titleBox">
-	 		 	<span class="contentTitle">⭕ 정보수정 성공</span>  
-  			</div>  
+		<c:when test="${editcheck eq true}">
+			<script>
+				alert("정보수정 성공!");
+				location.href = "${contextPath}/Main.do"
+			</script>
 		</c:when>
 		<c:otherwise>
 			<div class="titleBox">
 	 		 	<span class="contentTitle">❌ 정보수정 실패</span>
-	 		 	<span>${joinMent }</span>
+	 		 	<div class="mt-2">
+	 		 		<p class="text-danger">시스템 오류</p>
+	 		 	</div>
   			</div> 
 		</c:otherwise>
 	</c:choose>
-    <div align="center">
-        <p class="text-danger my-3">${editMent}</p>
-    </div>
+    
 </div>
 </body>

@@ -11,12 +11,10 @@
 <div class="bg-white contentBox" align="center">
 	<c:choose>
 		<c:when test="${!empty logId}">
-			<div class="titleBox">
-	 		    <span class="contentTitle">⭕ 로그인 성공</span>  
-  		    	<div align="center" class="mt-3">
-					<button class="myBtn btn my-4 transBtn" data-url="${contextPath}/Main.do">메인화면</button>
-				</div>
-  		    </div>
+			<script>
+				alert("로그인 성공");
+				location.href = "${contextPath}/Main.do";
+			</script>
 		</c:when>
 		<c:otherwise>
 			<div class="titleBox">
