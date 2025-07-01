@@ -19,7 +19,7 @@
         <form action="${contextPath}/PointMain.do">
         	<table class="table-responsive" id="pointTable">
         		<tr>
-        			<td width="40%">
+        			<td width="40%" align="left">
 					    <p id="myPoint" class="px-3">${logNick}님 보유 포인트 : ${totalPoint}</p>        			
         			</td>
         			<td width="60%" align="right" class="px-3">

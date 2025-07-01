@@ -19,7 +19,8 @@
 body {
     font-family: 'NanumSquareRound';
     background-color: #cecece;
-    height: 1000px;
+    margin: 0;
+    padding: 0;
 } 
 
 /* top */
@@ -84,8 +85,9 @@ a:hover {
 .contentBox {
     background-color: #cecece;
     margin: 0 auto;
-    height: 70%;
+    height: 100%;
     width: 80%;
+    padding-bottom: 20%;
 }
 
 .content {

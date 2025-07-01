@@ -6,6 +6,17 @@ public class StoreItem {
 	private int price;
 	private String coment;
 	private int total;
+	private String path;
+	
+	public StoreItem(int number, String name, int price, String coment, int total, String path) {
+		super();
+		this.number = number;
+		this.name = name;
+		this.price = price;
+		this.coment = coment;
+		this.total = total;
+		this.path = path;
+	}
 	
 	public StoreItem(int number, String name, int price, String coment, int total) {
 		super();
@@ -14,7 +25,9 @@ public class StoreItem {
 		this.price = price;
 		this.coment = coment;
 		this.total = total;
+		this.path = null;
 	}
+	
 	public int getNumber() {
 		return number;
 	}
@@ -45,6 +58,13 @@ public class StoreItem {
 	public void setTotal(int total) {
 		this.total = total;
 	}
+	public String getPath() {
+		return path;
+	}
+	public void setPath(String path) {
+		this.path = path;
+	}
+	
 	
 	
 }
