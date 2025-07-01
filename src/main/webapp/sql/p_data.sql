@@ -78,9 +78,9 @@ CREATE TABLE point_store(
     item_path varchar(100)
 );
 
-INSERT INTO point_store  VALUES(1, '아이템1', 300, '아이템 설명1 입니다.', 30);
-INSERT INTO point_store  VALUES(2, '아이템2', 500, '아이템 설명2 입니다.', 10);
-INSERT INTO point_store  VALUES(3, '아이템3', 1000, '아이템 설명3 입니다.', 0);
+INSERT INTO point_store  VALUES(1, '아이템1', 300, '아이템 설명1 입니다.', 30, null);
+INSERT INTO point_store  VALUES(2, '아이템2', 500, '아이템 설명2 입니다.', 10, null);
+INSERT INTO point_store  VALUES(3, '아이템3', 1000, '아이템 설명3 입니다.', 0, null);
 
 CREATE TABLE point_history(
 	history_num int,

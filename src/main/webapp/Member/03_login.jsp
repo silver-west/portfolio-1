@@ -21,7 +21,10 @@
         	<p id="mentPw"></p>
         </div>
         <div class="joinForm" align="center">
-            <button type="submit" class="myBtn btn my-3" id="loginBtn">로그인</button>
+            <button type="submit" class="myBtn btn mt-3" id="loginBtn">로그인</button>
+		    <div class="mt-2" align="center">
+		    	<p id="loginMent" class="text-danger"></p>
+		    </div>
         </div>
     </form>
   </div>

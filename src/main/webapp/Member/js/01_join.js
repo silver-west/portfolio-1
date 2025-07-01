@@ -1,9 +1,4 @@
 //변수
-var booleanId = false;
-var booleanPw = false;
-var booleanRe = false;
-var booleanNick = false;
-
 let idDupCheck = false;
 let nickDupCheck = false;
 
@@ -11,7 +6,7 @@ $(document).ready(function(){
     //bootStrap
     $("label").addClass("form-label text-start w-100");
     $(".idCheck, .nickCheck").addClass("btn btn-secondary");
-    $("#mentId, #mentPw, #mentRe, #mentNick").addClass("mt-2 text-start w-100");
+    $("#mentId, #mentPw, #mentRe, #mentNick").addClass("mt-2 text-danger text-start w-100");
     $("#ment").addClass("mt-2 text-danger");
 
 
@@ -23,12 +18,10 @@ $(document).ready(function(){
 
     $("#joinPw").attr({
         "placeholder" : "비밀번호를 입력하세요",
-        "type" : "password"
     });
 
     $("#rePw").attr({
         "placeholder" : "한 번 더 입력하세요",
-        "type" : "password"
     });
 
     $("#joinNick").attr({
@@ -37,18 +30,13 @@ $(document).ready(function(){
     });
 
     //체크
-    $("#joinId").blur(function(){
-    if (!nullCheck($(this))) {
-        $("#mentId").text("아이디를 입력하세요");
-        booleanId = false;
-    } else {
-        $("#mentId").text("");
-        booleanId = true;
-    }
-    });
-
-    $(".idCheck").click(function(e) { //중복체크 (나중에..)
+    $(".idCheck").click(function(e) { 
         let inputId = $("#joinId").val();
+        if (inputId == "" || !inputId) {
+            $("#mentId").removeClass("text-success").addClass("text-danger");
+           $("#mentId").text("아이디를 입력하세요");
+           return; 
+        }
 
         $.ajax({
             url: "IdCheck.do",
@@ -69,8 +57,13 @@ $(document).ready(function(){
                 
     });
     
-    $(".nickCheck").click(function(e) { //중복체크 (나중에..)
+    $(".nickCheck").click(function(e) {
         let inputNick = $("#joinNick").val();
+        if (inputNick == "" || !inputNick) {
+             $("#mentNick").removeClass("text-success").addClass("text-danger");
+           $("#mentNick").text("닉네임을 입력하세요");
+           return; 
+        }
 
         $.ajax({
             url: "NickCheck.do",
@@ -89,100 +82,62 @@ $(document).ready(function(){
             }
         });          
     });
-
-    $("#joinPw").blur(function(){
-    if (!nullCheck($(this))) {
-        $("#mentPw").text("비밀번호를 입력하세요");
-        booleanPw = false;
-    } else {
-        $("#mentPw").text("");
-        booleanPw = true;
-    }
-    });
-
-    $("#rePw").blur(function(){
-        if (!nullCheck($(this))) {
-            $("#mentRe").text("한 번 더 입력하세요");
-            booleanRe = false;
-        } else {
-            if (!pwCheck($(this))) {
-                $("#mentRe").text("위의 입력과 다릅니다");
-                booleanRe = false;
-            } else {
-                $("#mentRe").text("");
-                booleanRe = true;
-            }
-        }
-        });
-    });
-
-    $("#joinNick").blur(function(){
-    if (!nullCheck($(this))) {
-        $("#mentNick").text("닉네임을 입력하세요");
-        booleanNick = false;
-    } else {
-        $("#mentNick").text("");
-        booleanNick = true;
-    }
-    });
-
-
-   $("#submitBtn").click(function(e) {
+    
+    $("#submitBtn").click(function(e) {
         e.preventDefault();
 
-        if (formCheck()) {
-            if (!idDupCheck) {
-				$("#ment").text("아이디 중복 체크 확인");
-				return;
-			} else {
-				$("#ment").text("");
-			}
-			
-			if (!nickDupCheck) {
-				$("#ment").text("닉네임 중복 체크 확인");
-				return;
-			} else {
-				$("#ment").text("");
-			}
-			
-			$("form").submit();
+        //1. null 체크
+        if (!formCheck()) {
+            return;
         }
+
+        //2. 중복체크
+        if (!idDupCheck) {
+            $("#ment").text("아이디 중복 체크 확인");
+            return;
+        } else {
+            $("#ment").text("");
+        }
+            
+        if (!nickDupCheck) {
+            $("#ment").text("닉네임 중복 체크 확인");
+            return;
+        } else {
+            $("#ment").text("");
+        }
+
+        //3. 비번-비번확인 체크
+        let pw = $("#joinPw").val();
+        let re = $("#rePw").val();
+        if (pw != re) {
+			$("#rePw").focus();
+            $("#mentRe").text("비밀번호가 다릅니다");
+            return;
+        }
+        
+    
+        $("form").submit();
     
     });
-
-    function nullCheck(obj) {
-        if (!obj.val()) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    function pwCheck(obj) {
-        if ($("#joinPw").val() == obj.val()) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+});
 
     function formCheck() {
-        if (!booleanId) {
+        if (!$("#joinId").val() || $("#joinId").val() == "") {
             $("#joinId").focus();
             return false;
         }
         
-        if (!booleanPw) {
+        if (!$("#joinPw").val() || $("#joinPw").val() == "") {
             $("#joinPw").focus();
             return false;
         }
 
-        if (!booleanRe) {
+        if (!$("#rePw").val() || $("#rePw").val() == "") {
             $("#rePw").focus();
             return false;
         }
 
-        if (!booleanNick) {
+        if (!$("#joinNick").val() || $("#joinNick").val() == "") {
             $("#joinNick").focus();
             return false;
         }

@@ -1,3 +1,7 @@
+
+
+<!-- 사용 안 하는 페이지인데 혹시 오류 날까봐 일단 남김 -->
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -10,7 +14,7 @@
 			<div class="titleBox">
 	 		    <span class="contentTitle">⭕ 로그인 성공</span>  
   		    	<div align="center" class="mt-3">
-					<a href="{contextPath}/Main.do">메인화면</a>
+					<button class="myBtn btn my-4 transBtn" data-url="${contextPath}/Main.do">메인화면</button>
 				</div>
   		    </div>
 		</c:when>

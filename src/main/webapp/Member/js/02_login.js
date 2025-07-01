@@ -48,9 +48,27 @@ $(document).ready(function(){
     $("#loginBtn").click(function(e) {
         e.preventDefault();
 
-        if (formCheck()) {
-            $("form").submit();
+        let inputId = $("#loginId").val();
+        let inputPw = $("#loginPw").val();
+
+        if (!formCheck()) {
+            return;
         }
+
+        $.ajax({
+            url: "LoginCheck.do",
+            method: "POST",
+            data: { id: inputId, pw: inputPw },
+            success: function(response) {
+                if (response == "pass") {
+                    $("form").submit();
+                } else {
+                    $("#loginMent").text("아이디, 비밀번호가 다릅니다");
+                    
+                    return;
+                }
+            }
+        });
     
     });
 

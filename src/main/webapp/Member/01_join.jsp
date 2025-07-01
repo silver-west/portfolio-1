@@ -19,12 +19,12 @@
 	    </div>
         <div class="joinForm my-3 pt-1">
             <label for="joinPw">비밀번호</label>
-            <input class="form-control" id="joinPw" name="joinPw">
+            <input class="form-control" id="joinPw" name="joinPw" type="password">
             <p id="mentPw"></p>
         </div>
 	    <div class="joinForm my-3 pt-1">
             <label for="rePw">비밀번호 확인</label>
-            <input class="form-control" id="rePw" name="rePw">
+            <input class="form-control" id="rePw" name="rePw" type="password">
             <p id="mentRe"></p>
         </div>
         <div class="joinForm my-3 pt-1">

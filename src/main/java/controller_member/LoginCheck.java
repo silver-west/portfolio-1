@@ -1,45 +1,46 @@
 package controller_member;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import DB_member.Member;
 import DB_member.MemberDAO;
 
-@WebServlet("/LoginPro.do")
-public class LoginPro extends HttpServlet {
+@WebServlet("/LoginCheck.do")
+public class LoginCheck extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-  
+       
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 	}
 
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("=== login Pro ===");
-		
+		System.out.println("== login Check ==");
 		request.setCharacterEncoding("UTF-8");
-		String loginId = request.getParameter("loginId");
-		String loginPw = request.getParameter("loginPw");
 		
+		String inputId = request.getParameter("id");
+		String inputPw = request.getParameter("pw");
+		
+		boolean loginCheck = false;
 		try {
-			Member member = MemberDAO.instance.getMember(loginId, loginPw);
-			HttpSession session = request.getSession();
-			session.setAttribute("logId", loginId);
-			session.setAttribute("logNick", member.getNickName());
-			
+			loginCheck = MemberDAO.instance.idAndPwCheck(inputId, inputPw);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		String path = request.getContextPath();
-		response.sendRedirect(path + "/Main.do");
-		
+		response.setContentType("text/plain; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		if (loginCheck) {
+			out.print("pass");
+		} else {
+			out.print("no");
+		}
 	}
 
 }

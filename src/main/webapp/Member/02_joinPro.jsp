@@ -7,9 +7,10 @@
 <div class="bg-white contentBox" align="center">
 	<c:choose>
 		<c:when test="${joinCheck eq true}">
-			<div class="titleBox">
-	 		 	<span class="contentTitle">⭕ 회원가입 성공</span>  
-  			</div>  
+			<script>
+				alert("회원가입 성공");
+				location.href = "${contextPath}/Main.do";
+			</script>
 		</c:when>
 		<c:otherwise>
 			<div class="titleBox">
@@ -18,7 +19,22 @@
   			<div>
   				<span class="coment my-3">시스템 오류</span>
   			</div>
+  			<div align="center">
+				<button class="myBtn btn my-3 transBtn" data-url="${contextPath}/Join.do">회원가입</button>
+				<button class="myBtn btn my-3 transBtn" data-url="${contextPath}/Main.do">메인화면</button>
+			</div> 
 		</c:otherwise>
 	</c:choose>
 </div>
+<script>
+$("document").ready(function() {
+	$(".transBtn").on("click", function(){
+		let url = $(this).data("url");
+						
+		if (url) {
+			window.location.href = url;
+		}
+	});
+});
+</script>
 </body>
