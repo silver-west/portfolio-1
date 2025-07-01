@@ -4,7 +4,7 @@
 <body>
 	<div class="bg-white contentBox">
 		<div class="titleBox">
-	 		 <span class="contentTitle">✔️ 메인</span>  
+	 		 <span class="contentTitle">✔️ 관리자 메인</span>  
   		</div>      
 	</div>
 </body>

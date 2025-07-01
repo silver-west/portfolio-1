@@ -1,48 +1,47 @@
 package cotoroller_admin;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import DB_member.AdminDAO;
 
-@WebServlet("/AdminLoginPro.do")
-public class AdminLoginPro extends HttpServlet {
+@WebServlet("/AdminCheck.do")
+public class AdminCheck extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+   
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 	}
 
-
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("== Admin Login Pro ==");
-		
+		System.out.println("== 관리자 확인 ==");
 		request.setCharacterEncoding("UTF-8");
-		String loginId = request.getParameter("loginId");
-		String loginPw = request.getParameter("loginPw");
+		
+		String inputId = request.getParameter("id");
+		String inputPw = request.getParameter("pw");
 		
 		boolean check = false;
 		try {
-			check = AdminDAO.instance.adminCheck(loginId, loginPw);
-			if (check) {
-				String adminNick = AdminDAO.instance.getAdminNick();
-				HttpSession session = request.getSession();
-				session.setAttribute("logId", loginId);
-				session.setAttribute("logNick", adminNick);
-			} 
+			check = AdminDAO.instance.adminCheck(inputId, inputPw);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	
-		String path = request.getContextPath();
-		response.sendRedirect(path + "/Admin.do");
-
+		
+		response.setContentType("text/plain; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		if (check) {
+			out.print("pass");
+		} else {
+			out.print("no");
+		}
+		
 	}
 
 }
