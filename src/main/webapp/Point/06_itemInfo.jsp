@@ -57,8 +57,11 @@
 					</c:otherwise>
 				</c:choose>
 			</table>
+			
+			<!-- hidden data -->
 			<input type="hidden" name="itemNum" value="${item.number}">	
 			<input type="hidden" name="orderPrice">
+			<input type="hidden" name="orderCount">
 		</form>
 		<div align="center" class="mt-2">
 			<p id="ment"></p>

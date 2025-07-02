@@ -25,7 +25,7 @@
             			<a href="${contextPath}/PointStore.do" class="navLink">상점</a>
             		</td>
             		<td>
-            			<a href="${contextPath}/#" class="navLink">장바구니</a>
+            			<a href="${contextPath}/Cart.do" class="navLink">장바구니</a>
             		</td>
             	</tr>
             </table>

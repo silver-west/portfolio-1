@@ -86,10 +86,13 @@ $(document).ready(function(){
 
 	//장바구니
 	let $cartBtn = $("#cartBtn");
-	
-	
-
-
+	function addCart(e) {
+		e.preventDefault();
+		
+		$("form").attr("action", "AddCart.do");
+		$("input[name='orderCount']").val(orderCount);
+		$("form").submit();
+	}
 
 	//구매
 	let $buyBtn = $("#buyBtn");
@@ -128,6 +131,7 @@ $(document).ready(function(){
 	$plusBtn.on("click", countUp);
 	$minusBtn.on("click", countDown);
 	$buyBtn.on("click", checkPoint);
+	$cartBtn.on("click", addCart);
 	
 	checkCount(); 
 	
