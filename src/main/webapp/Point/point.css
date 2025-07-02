@@ -188,13 +188,13 @@ td {
 }
 
 #btnBox {
-	width: 100%;
+	width: 60%;
 	white-space: nowrap;
 }
 
 .orderBtn {
 	width: 50%;
-	max-height: 100%;
+	max-width: 100px;
 }
 
 

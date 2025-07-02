@@ -1,5 +1,6 @@
 $(document).ready(function(){
 	$("#sold").prop("disabled", true);
+	$("#ment").addClass("text-danger");
 	$("#itemName").css({
 		"color" : "#00809D",
 		"font-weight" : "bold",
@@ -14,7 +15,7 @@ $(document).ready(function(){
 		"font-size" : "20px"
 	});
 	
-	//수량 설정 
+	//수량
 	let total = parseInt($("#total").text());
 	const price = parseInt($("#itemPrice").text());
 	let orderCount = 1;
@@ -25,7 +26,6 @@ $(document).ready(function(){
 			"text-decoration" : "line-through",
 			"text-decoration-color" : "red"
 		});
-		$("#ment").addClass("text-danger");
 		$("#ment").text("품절된 아이템 입니다.");
 	}
 
@@ -33,7 +33,7 @@ $(document).ready(function(){
 	let $minusBtn = $("#minusBtn");
 	let $orderCountBox = $("#orderCount");
 	let $totalPrice = $("#totalPrice");
-	$totalPrice.text(`${orderCount * price} P`);
+	$totalPrice.text(`${orderCount * price}`);
 	
 	function countUp() {
 		if (orderCount >= total) {
@@ -79,13 +79,55 @@ $(document).ready(function(){
 	}
 	
 	function updateUI() {
-		$totalPrice.text(`${orderCount * price} P`);
+		$totalPrice.text(`${orderCount * price}`);
 		$orderCountBox.html(orderCount);
 		checkCount(); 
 	}
+
+	//장바구니
+	let $cartBtn = $("#cartBtn");
+	
+	
+
+
+
+	//구매
+	let $buyBtn = $("#buyBtn");
+	function checkPoint(e) {
+		 e.preventDefault();
+		
+		let price = parseInt($totalPrice.text());
+		console.log(price);
+		
+		//포인트 체크
+		$.ajax({
+			url: "PointCheck.do",
+			method: "POST",
+			data: { vsPoint : price },
+			success :function(response) {
+				if (response == "pass") {
+					$("form").attr("action", "BuyItem.do");
+					$("input[name='orderPrice']").val(price);
+					$("form").submit();
+				} else {
+					$("#ment").text("보유 포인트가 부족합니다");
+				}
+			}
+		});
+	}
+
+
+
+
+
+
+
+
+	
 	
 	$plusBtn.on("click", countUp);
 	$minusBtn.on("click", countDown);
+	$buyBtn.on("click", checkPoint);
 	
 	checkCount(); 
 	

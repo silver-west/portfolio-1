@@ -1,21 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<head>
-	<!-- button icon -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <jsp:include page="/Point/02_mini_navi.jsp"></jsp:include>
 <body>
 	<div class="bg-white contentBox">
   	<div align="center">
-		<form action="" method="post" id="itemBox" class="p-2">	
+		<form method="post" id="itemBox" class="p-2">	
 			<table id="itemForm">
 				<colgroup>
 					<col style="width: 40%;">
-					<col style="width: 40%;">
-					<col style="width: 20%;"> 
+					<col style="width: 30%;">
+					<col style="width: 30%;"> 
 			 	</colgroup>
 				<tr>
 					<td rowspan="5" id="itemImgBox">
@@ -41,7 +37,7 @@
 		 					</tr>
 		 				</table>
 					</td>
-					<td id="totalPrice"></td>
+					<td>총 금액 : <span id="totalPrice"></span> P</td>
 				</tr>
 				<c:choose>
 					<c:when test="${item.total eq 0}">
@@ -53,21 +49,18 @@
 					</c:when>
 					<c:otherwise>
 						<tr>
-							<td align="center" id="btnBox">
-								<button id="cartBtn" class="btn btn-success orderBtn">
-									<i class="fas fa-shopping-cart"></i>
-								</button>
-							</td>
-							<td>
-								<button id="buyBtn" class="btn btn-primary orderBtn">바로 구매</button>
-							</td>
+							<td align="center" id="btnBox" colspan="2">
+								<button id="cartBtn" class="btn btn-success orderBtn" type="button">담기</button>
+								<button id="buyBtn" class="btn btn-primary orderBtn" type="button">구매</button>
+							</td>		
 						</tr>
-					
 					</c:otherwise>
 				</c:choose>
 			</table>
+			<input type="hidden" name="itemNum" value="${item.number}">	
+			<input type="hidden" name="orderPrice">
 		</form>
-		<div align="center">
+		<div align="center" class="mt-2">
 			<p id="ment"></p>
 		</div>
   	</div> 

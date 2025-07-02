@@ -85,4 +85,42 @@ public class StoreItemDAO {
 		
 		return item;
 	}
+	
+	public boolean buyItem(String id, int itemNum, int totalPrice) throws Exception {
+		boolean check = false;
+		
+		boolean next = false;
+		//1.상품 정보 업데이트
+		try {
+			getConn();
+			String sql = "UPDATE point_store SET item_total = item_total - 1 WHERE item_num = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, itemNum);
+			
+			int result = pstmt.executeUpdate();
+			if (result == 1) {
+				next = true;
+			} else {
+				System.out.println("아이템 구매 중 시스템 오류 :: 상품 정보 확인");
+			}
+			
+			if (next) {
+				//2. 유저 포인트 업데이트 (-> 히스토리)
+				check = PointDAO.instance.updatePointToId(id, totalPrice, false);
+				if (check) {
+					check = HistoryDAO.instance.addHistory(id, "포인트 상점", totalPrice, "minus");
+				} else {
+					System.out.println("아이템 구매 중 시스템 오류 :: 아이템 구매 중 포인트 정보 업데이트 실패");
+				}
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		
+		
+		return check;
+	}
 }
