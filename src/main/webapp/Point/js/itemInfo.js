@@ -8,11 +8,12 @@ $(document).ready(function(){
 	});
 	
 	$(".p").addClass("px-3 py-2");
-	$("#cartBtn, #buyBtn").addClass("mx-5");
+	$("#cartBtn, #buyBtn").addClass("mx-2");
 	$(".price").css({
 		"color" : "coral",
 		"font-weight" : "bold",
-		"font-size" : "20px"
+		"font-size" : "20px",
+		"border-bottom" : "1px solid lightgray"
 	});
 	
 	//수량

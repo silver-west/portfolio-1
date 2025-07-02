@@ -18,7 +18,7 @@
 		 				<img src="${contextPath}/Point/img/comingImg.jpg" id="itemInfoImg">
 		 			</td>
 					<td class="p" id="itemName">${item.name}</td>
-		 			<td class="price"><span id="itemPrice">${item.price}</span> P</td>
+		 			<td class="price"><span id="itemPrice" class="p">${item.price}</span> P</td>
 				</tr>
 				<tr>
 		 			<td colspan="2" class="p">${item.coment}</td>
