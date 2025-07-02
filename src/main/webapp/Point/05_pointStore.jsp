@@ -16,10 +16,11 @@
 	  					<img src="${contextPath}/Point/img/comingImg.jpg" class="card-img-top border-bottom">
 	  					<div class="card-body py-1">
 	  						<p class="card-title mt-2">
-	  							<a href="#">${item.name}</a>
+	  							<a href="${contextPath}/ItemInfo.do?itemNum=${item.number}">${item.name}</a>
 	  						</p>
 	  						<div class="card-text pb-1">
 	  							<p>${item.coment}</p>
+	  							<span class="text" id="price">${item.price} P</span><br>
 	  							<span class="text">남은 수량 : </span><span class="text" id="total">${item.total}</span><span class="ment ms-2"></span>
 	  						</div>
 	  					</div>
@@ -31,6 +32,7 @@
 </div>
 <script>
 $(document).ready(function() {
+	
 	$(".card").each(function() {
 		let total = $(this).find("#total").text();
 		
@@ -42,13 +44,18 @@ $(document).ready(function() {
 			});
 			let $ment = $(this).find(".ment");
 			$ment.addClass("text-danger");
+			$ment.css({
+				"border" : "1px solid darkgray",
+				"border-radius" : "3px",
+				"padding" : "2px"
+			});
 			$ment.text("품절");
-		}
+		} 
 	});
 	
 	$(".card").on("mouseenter", function() {
 		$(this).css({
-			"border" : "5px solid lightblue",
+			"border" : "3px solid lightblue",
 			"cursor" : "pointer"
 		});
 	});
@@ -57,6 +64,17 @@ $(document).ready(function() {
 			"border" : "1px solid lightgray",
 			"cursor" : ""
 		});
+	});
+	$(".card").on("mousedown", function() {
+		$(this).css({
+			"border" : "2px solid #00809D",
+		});
+	});
+	
+	$(".card").on("click", function(e) {
+		let url = $(this).find("a").attr("href");
+		
+		location.href = url;
 	});
 });
 </script>

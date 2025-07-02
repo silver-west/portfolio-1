@@ -131,6 +131,75 @@ td {
 	font-size: 15px;
 }
 
+#price {
+	font-size: 20px;
+	font-weight: bold;
+	color: #00809D;
+}
+
+/*item info*/
+#itemBox {
+	width: 80%;
+	max-width: 800px;
+	border: 1px solid lightgray;
+}
+
+#itemForm{
+	width: 100%;
+	margin: 10 auto;
+}
+
+#itemImgBox {
+	width: 40%;
+	min-width: 100px;
+}
+
+#itemInfoImg {
+	width: 100%;
+	height: 100%;
+	object-fit: fill;
+}
+
+#itemForm td {
+	border: none;
+}
+
+#itemName, #itemPrice {
+	border-bottom: 1px solid lightgray !important;
+}
+
+#countBtnBox {
+	width: 70%;
+	text-align: center;
+	margin: auto;
+	padding: auto;
+}
+
+#countBtnBox td {
+	border: 1px solid lightgray;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+#countBtnBox .countBtn {
+	width: 30%;
+	cursor: pointer;
+	font-weight: bold;
+}
+
+#btnBox {
+	width: 100%;
+	white-space: nowrap;
+}
+
+.orderBtn {
+	width: 50%;
+	max-height: 100%;
+}
+
+
+
+
 
 
 
