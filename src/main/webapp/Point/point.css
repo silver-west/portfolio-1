@@ -28,17 +28,8 @@ a:hover {
   max-width: 300px;
 }
 
-.tableForm {
-	margin-top: 40px;
-	width: 100%;
-	max-width: 700px;
-	text-align: center;
-	border-bottom: none;
-}
-
-td {
-	border-bottom: 1px solid lightgrey;
-	padding: 3px;
+.tdL td {
+	border-bottom: 1px solid lightgray;
 }
 
 .tdB {
@@ -198,8 +189,32 @@ td {
 }
 
 
+/*cart*/
+#cartTable {
+	width: 100%;
+	max-width: 700px;
+	border: 1px solid black;
+}
 
+.tL td {
+	border-top: 1px solid black;
+}
 
+.countBtn {
+	text-align: center;
+	border: 1px solid lightgray;
+	height: 35px;
+	width: 33%;
+}
+
+#div2 {
+	max-width: 700px;
+}
+
+.minusBtn, .plusBtn {
+	font-weight: bold;
+	font-size: 20px;
+}
 
 
 
