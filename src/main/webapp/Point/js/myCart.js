@@ -20,7 +20,7 @@ $(document).ready(function(){
 //------------------------------------------
 
 // 변수 ------------------------------------
-    
+    let orderTotal = 0;
 
     //object
     let $allCheck = $("#allCheck");
@@ -96,6 +96,10 @@ $(document).ready(function(){
 
         //갱신
         $("#orderTotal").text(orderTotal);
+        $(".orderCount").each(function() {
+            let orderCount = parseInt($(this).text());
+            $(this).siblings("input[name=count]").val(orderCount);
+        });
         
         
     }
@@ -150,6 +154,23 @@ $(document).ready(function(){
         }
     }
 
+    function totalCheck() {
+        let boolean = true;
+        $(".checkBox:checked").each(function(){
+            $itemTotal = $(this).closest("tr").next().next().find(".itemTotal");
+            let total = parseInt($itemTotal.text());
+            
+            if (total < 1) {
+                boolean = false;
+                return false;
+            }
+        });
+
+        return boolean;
+    }
+
+    
+
     
 // -----------------------------------------
 
@@ -167,6 +188,40 @@ $(document).ready(function(){
     $(".checkBox").on("change", updateCartTotal);
     $(".minusBtn").on("click", countDown);
     $(".plusBtn").on("click", countUp);
+    
+    $("#cartBuyBtn").on("click", function(e) {
+        e.preventDefault();
+
+        //재고 되는지 체크
+        let booleanTotalCheck = totalCheck();
+        if (booleanTotalCheck) {
+            $("#ment").text("");
+        } else {
+            $("#ment").text("품절인 상품이 있습니다");
+            return;
+        }
+
+        //포인트 되는지 체크
+        let orderTotal = parseInt($("#orderTotal").text());
+        $.ajax({
+            url: "PointCheck.do",
+            method: "POST",
+            data: { vsPoint : orderTotal },
+            success: function(response) {
+                if (response == "pass") {
+                    $("input[name='totalPoint']").val(orderTotal);
+                    $("#cartForm").attr("action", "BuyCart.do");
+                    updateCartTotal();
+                    $("#cartForm").submit();
+                } else {
+                    $("#ment").text("포인트가 부족합니다");
+                    return;
+                }
+            }
+        });
+
+
+    });
 
     
 

@@ -19,7 +19,7 @@
 </c:when>
 <c:otherwise>
 <div align="center">
-<form method="post">
+<form method="post" id="cartForm">
 	<table class="w-70" id="cartTable">
 	<colgroup>
 	    <col style="width:10%">
@@ -27,16 +27,18 @@
 	    <col style="width:60%">
   </colgroup>
 	<tr class="tdL">
-		<td><input type="checkBox" name="check" id="allCheck" checked="checked"></td>
+		<td><input type="checkBox" id="allCheck" checked="checked" class="ms-3"></td>
 		<td colspan="2" >전체선택</td>
 	</tr>
 	<c:forEach var="item" items="${myCart}">
 				<tr class="tdL tL">
-					<td><input type="checkbox" name="check" class="checkBox" checked="checked" ></td>
+					<td><input type="checkbox" name="check" class="checkBox" checked="checked" value="${item.itemNumber}"></td>
 					<td class="itemName">${item.itemName}</td>
 					<td><span class="itemPrice">${item.itemPrice}</span> P</td>
 					<td colspan="4" align="right" class="my-2 py-2">
-						<button type="button" class="delBtn" class="mx-3">X</button>
+						<button type="button" class="delBtn mx-3" onclick="window.location.href='${contextPath}/DelCart.do?itemNum=${item.itemNumber}'">
+						X
+						</button>
 					</td>
 				</tr>
 				<tr>
@@ -55,7 +57,9 @@
 							</tr>
 							<tr>
 								 <td class="countBtn minusBtn">-</td>
-								 <td class="countBtn orderCount">${item.orderCount}</td>
+								 <td class="countBtn orderCount">${item.orderCount}
+					<!-- hidden -->	<input type="hidden" name="count" value="${item.orderCount}">								 
+								 </td>
 								 <td class="countBtn plusBtn">+</td>
 							</tr>
 							<tr>
@@ -67,12 +71,19 @@
 	</c:forEach>
 	</table>
 	<!-- hidden -->
-	<input>
+	<input type="hidden" name="totalPoint">
 </form>
 </div>
 <div align="right" id="div2" class="w-100 px-5 mt-3">
 	<p>선택 상품 총 가격</p>
 	<p id="orderText"><span id="orderTotal"></span> P</p>
+</div>
+<div align="center" class="my-3">
+	<button type="submit" onclick="" id="checkDelBtn">삭제</button>
+	<button type="submit" id="cartBuyBtn">결제</button>
+</div>
+<div align="center">
+	<p id="ment" class="text-danger"></p>
 </div>
 </c:otherwise>
 </c:choose>	

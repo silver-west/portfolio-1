@@ -86,6 +86,53 @@ public class StoreItemDAO {
 		return item;
 	}
 	
+	public boolean buyCartList(String id, String[] itemNumList, String[] countList, String totalPrice) throws Exception {
+		boolean check = false;
+		
+		//1. 상품 정보 업데이트
+		boolean next = true;
+		try {
+			getConn();
+			for (int i = 0; i < itemNumList.length; i++) {
+				String itemNumber = itemNumList[i];
+				String orderCount = countList[i];
+				
+				int intItemNum = Integer.parseInt(itemNumber);
+				int intOrderCount = Integer.parseInt(orderCount);
+				
+				String sql = "UPDATE point_store SET item_total = item_total - ? WHERE item_num = ?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, intItemNum);
+				pstmt.setInt(2, intOrderCount);
+				
+				int result = pstmt.executeUpdate();
+				if (result < 1) {
+					next = false;
+					System.out.println("아이템 구매 중 시스템 오류 :: 상품 정보 확인");
+					break;
+				} 
+			}
+			
+			//2. 유저 포인트 업데이트 (-> 히스토리)
+			if (next) {
+				int intTotalPrice = Integer.parseInt(totalPrice);
+				
+				check = PointDAO.instance.updatePointToId(id, intTotalPrice, false);
+				if (check) {
+					check = HistoryDAO.instance.addHistory(id, "포인트 상점", intTotalPrice, "minus");
+				} else {
+					System.out.println("아이템 구매 중 시스템 오류 :: 아이템 구매 중 포인트 정보 업데이트 실패");
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		
+		return check;
+	}
+	
 	public boolean buyItem(String id, int itemNum, int totalPrice) throws Exception {
 		boolean check = false;
 		

@@ -136,4 +136,27 @@ public class CartDAO {
 		return myCartList;
 	}
 	
+	public boolean delCart(String id, int itemNum) throws Exception {
+		boolean check = false;
+		
+		try {
+			getConn();
+			String sql = "DELETE FROM point_cart WHERE user_id = ? AND item_num = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setInt(2, itemNum);
+			
+			int result = pstmt.executeUpdate();
+			if (result > 0) {
+				check = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		
+		return check;
+	}
+	
 }
