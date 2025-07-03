@@ -79,7 +79,7 @@
 	<p id="orderText"><span id="orderTotal"></span> P</p>
 </div>
 <div align="center" class="my-3">
-	<button type="submit" onclick="" id="checkDelBtn">삭제</button>
+	<button type="submit" onclick="" id="checkDelBtn">선택삭제</button>
 	<button type="submit" id="cartBuyBtn">결제</button>
 </div>
 <div align="center">

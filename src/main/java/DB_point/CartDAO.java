@@ -159,4 +159,21 @@ public class CartDAO {
 		return check;
 	}
 	
+	public boolean delCartAll(String id, String[] itemNumList) throws Exception {
+		boolean check = false;
+		
+		for (int i = 0; i < itemNumList.length; i++) {
+			String number = itemNumList[i];
+			int itemNumber = Integer.parseInt(number);
+			
+			check = delCart(id, itemNumber);
+			if (!check) {
+				System.out.println("장바구니 선택 아이템 삭제 중 시스템 오류");
+				break;
+			} 
+		}
+		
+		return check;
+	}
+	
 }

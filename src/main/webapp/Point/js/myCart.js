@@ -11,6 +11,9 @@ $(document).ready(function(){
 		"font-weight" : "bold",
 		"color" : "coral"
 	});
+
+    $("#checkDelBtn").addClass("btn btn-danger mx-3");
+    $("#cartBuyBtn").addClass("btn btn-success");
 	
 	$(".priceText").addClass("fs-5 text-danger text-center pt-3");
 	$(".itemName").addClass("fs-5");
@@ -220,9 +223,23 @@ $(document).ready(function(){
             }
         });
 
-
     });
 
+    $("#checkDelBtn").on("click", function(e) {
+        e.preventDefault();
+
+        $("#cartForm").attr("action", "DelCartAll.do");
+        $("#cartForm").submit();
+    });
+    
+   
+	$(".transBtn").on("click", function(){
+		let url = $(this).data("url");
+		
+		if (url) {
+			window.location.href = url;
+		}
+	});
     
 
 //------------------------------------------
