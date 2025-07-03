@@ -27,13 +27,14 @@
 	    <col style="width:60%">
   </colgroup>
 	<tr class="tdL">
-		<td><input type="checkBox" name="check"></td>
+		<td><input type="checkBox" name="check" id="allCheck" checked="checked"></td>
 		<td colspan="2" >전체선택</td>
 	</tr>
 	<c:forEach var="item" items="${myCart}">
 				<tr class="tdL tL">
-					<td><input type="checkbox" name="check"></td>
+					<td><input type="checkbox" name="check" class="checkBox" checked="checked" ></td>
 					<td class="itemName">${item.itemName}</td>
+					<td><span class="itemPrice">${item.itemPrice}</span> P</td>
 					<td colspan="4" align="right" class="my-2 py-2">
 						<button type="button" class="delBtn" class="mx-3">X</button>
 					</td>
@@ -42,12 +43,12 @@
 					<td colspan="2" rowspan="2">
 						<img src="${contextPath}/Point/img/comingImg.jpg">
 					</td>
-					<td class="px-4">
+					<td class="px-4" colspan="2">
 						${item.coment}
 					</td>
 				</tr>
 				<tr>
-					<td colspan="3" align="center">
+					<td colspan="4" align="center">
 						<table class="mx-2">
 							<tr>
 								<td colspan="3" class="pb-2 orTo">( 주문 가능 재고 : <span>${item.itemTotal} )</span></td>
@@ -58,41 +59,24 @@
 								 <td class="countBtn plusBtn">+</td>
 							</tr>
 							<tr>
-								<td colspan="3" class="orderPrice">=> <span>0</span> P</td>
+								<td colspan="3" class="priceText">=> <span class="totalPrice">0</span> P</td>
 							</tr>
 						</table>
 					</td>
 				</tr>
 	</c:forEach>
 	</table>
+	<!-- hidden -->
+	<input>
 </form>
 </div>
 <div align="right" id="div2" class="w-100 px-5 mt-3">
 	<p>선택 상품 총 가격</p>
-	<p id="totalPrice"><span></span> P</p>
+	<p id="orderText"><span id="orderTotal"></span> P</p>
 </div>
 </c:otherwise>
 </c:choose>	
 	
 </div>
-<script>
-$(document).ready(function(){
-	$("input[name='check']").addClass("ms-3");
-	$("img").css({
-		"width" : "100%",
-		"height" : "100%",
-		"object-fit" : "cover" 	
-	});
-	
-	$(".orTo").css({
-		"font-weight" : "bold",
-		"color" : "coral"
-	});
-	
-	$(".orderPrice").addClass("fs-5 text-danger text-center pt-3");
-	$(".itemName").addClass("fs-5");
-	$("#totalPrice").addClass("fs-2 fw-bold");
-	$(".delBtn").addClass("btn btn-danger me-3");
-});
-</script>
+<script src="${contextPath}/Point/js/myCart.js"></script>
 </body>

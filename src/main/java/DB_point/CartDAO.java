@@ -111,7 +111,7 @@ public class CartDAO {
 		try {
 			getConn();
 			String sql = "";
-			sql += "SELECT cart.user_id, cart.item_num, cart.orderCount, item.item_name , item.item_cmt, item.item_total ";
+			sql += "SELECT cart.user_id, cart.item_num, cart.orderCount, item.item_name , item.item_cmt, item.item_total, item.item_price ";
 			sql += "FROM point_cart cart ";
 			sql += "JOIN point_store item ON cart.item_num = item.item_num ";
 			sql += "WHERE cart.user_id = ?";
@@ -122,7 +122,7 @@ public class CartDAO {
 			
 			while (rs.next()) {
 				//String userId, int itemNumber, int orderCount, String itemName, String coment
-				MyCart myCart = new MyCart(rs.getString(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getString(5), rs.getInt(6));
+				MyCart myCart = new MyCart(rs.getString(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getInt(7));
 				myCartList.add(myCart);
 			}
 			
