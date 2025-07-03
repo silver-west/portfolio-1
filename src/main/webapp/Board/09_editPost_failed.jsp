@@ -8,6 +8,9 @@
 		<div class="titleBox">
 	 		 <span class="contentTitle">❌ 게시글 수정 실패</span>  
   		</div>
+  		<div align="center" class="mt-3">
+  			<p class="text-danger">시스템 오류</p>
+  		</div>
   		<div align="center">
 			<button class="myBtn btn my-4 transBtn" data-url="${contextPath}/BoardMain.do">게시판</button>
 			<button class="myBtn btn my-4 transBtn" data-url="${contextPath}/MyPostList.do">작성글</button>

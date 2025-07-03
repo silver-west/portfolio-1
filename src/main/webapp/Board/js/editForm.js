@@ -6,6 +6,7 @@ $("document").ready(function() {
         $("#formSt td").addClass("m-2 p-2");
 		$(".noneLine").css("border-bottom", "none");
         $("#sumitBtn").addClass("btn myBtn");
+        $("##nullMent").addClass("text-danger");
 
         //check
         $("#sumitBtn").click(function(e) {
@@ -13,12 +14,14 @@ $("document").ready(function() {
 
             if (formCheck()) {
                 $("form").submit();
+            } else {
+                return;
             }
         });
 	});
 
-    function nullCheck(obj) {
-        if (obj.val()) {
+    function nullCheck() {
+        if ($(this).val() || $(this).val() == "") {
             return true;
         } else {
             return false;
@@ -26,27 +29,21 @@ $("document").ready(function() {
     }
 
     function formCheck() {
-        const $editSubject = $("input[name='editSubject']");
-        const $editContent = $("textarea[name='editContent']");
-        const $p = $("#nullMent");
+        let $editSubject = $("input[name='editSubject']");
+        let $editContent = $("textarea[name='editContent']");
+        let $p = $("#nullMent");
         
-        if (nullCheck($editSubject)) {
-            
-            if (nullCheck($editContent)) {
-                return true;
-            } else {
-                $p.addClass("fw-bold text-danger text-center");
-                $editContent.focus();
-                $p.html("내용을 입력하세요");
-
-                return false;
-            }
-
-        } else {
-            $p.addClass("fw-bold text-danger text-center");
+        if ($editSubject.nullCheck()) {
+            $p.text("제목을 입력하세요");
             $editSubject.focus();
-            $p.html("제목을 입력하세요");
-
-            return false;
+            return false;  
         }
+
+        if ($editContent.nullCheck()) {
+            $p.text("내용을 입력하세요");
+            $editContent.focus();
+            return false;  
+        }
+
+        return true;
     }

@@ -8,7 +8,7 @@
 	<div align="center">
 	 	<span class="contentTitle">게시글 수정</span>  
   	</div>
-	<form id="formSt" action="${contextPath}/AddPostPro.do" method="post">
+	<form id="formSt" action="${contextPath}/EditPostPro.do" method="post">
 		<table>
 			<tr>
 				<td class="th">작성자</td>
@@ -30,7 +30,7 @@
             <button id="sumitBtn" type="submit">작성 완료</button>
         </div>
 	</form>
-    <div align="center">
+    <div align="center" class="mt-2">
         <p id="nullMent"></p>
     </div>
 </div>
