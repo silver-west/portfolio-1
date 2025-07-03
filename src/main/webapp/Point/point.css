@@ -215,6 +215,7 @@ a:hover {
 .minusBtn, .plusBtn {
 	font-weight: bold;
 	font-size: 20px;
+	cursor: pointer;
 }
 
 

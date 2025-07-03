@@ -21,7 +21,6 @@ $(document).ready(function(){
 
 // 변수 ------------------------------------
     
-    let orderTotal = 0;
 
     //object
     let $allCheck = $("#allCheck");
@@ -33,10 +32,8 @@ $(document).ready(function(){
     function init() {
         orderTotal = 0;
 
-        $(".checkBox").each(function() {
-            updateTotal.call(this);
-            updateCartTotal.call(this);
-        });
+       updatePage();
+
     }
 
     function updatePage() {
@@ -44,6 +41,10 @@ $(document).ready(function(){
         $(".checkBox").each(function() {
             updateTotal.call(this);
             updateCartTotal.call(this);
+        });
+
+        $(".orderCount").each(function(){
+            orderCountCheck.call(this);
         });
     }
 
@@ -78,24 +79,75 @@ $(document).ready(function(){
     }
 
     function updateCartTotal() {
-        //항목 가격 -> 체크 확인 -> orderTotal <-> totalPrice-> 갱신
+        //체크 확인 -> orderTotal <-> totalPrice-> 갱신
+        let orderTotal = 0;
         
-        //가격
-        let totalPrice = parseInt(
-            $(this).closest("tr").next().next()
-            .find(".totalPrice").text()
-        );
+        $(".checkBox:checked").each(function() {
+            //가격
+            let totalPrice = parseInt(
+                $(this).closest("tr").next().next()
+                .find(".totalPrice").text()
+            );
 
-        //체크 확인
-        if ($(this).prop("checked")) {
             orderTotal += totalPrice;
-        } else {
-            orderTotal -= totalPrice;
-        }
-        
+
+        });
+
+
         //갱신
         $("#orderTotal").text(orderTotal);
         
+        
+    }
+
+    function countDown() {
+        let $orderCount = $(this).closest("tr").find(".orderCount");
+        let count = parseInt($orderCount.text());
+        let itemTotal = parseInt($orderCount.closest("tr").prev().find(".itemTotal").text());
+
+        if (count <= 1 || itemTotal <= 1) {
+            return;
+        } else {
+            $orderCount.text(count - 1);
+        }
+
+        updatePage();
+    }
+
+    function countUp() {
+        let $orderCount = $(this).closest("tr").find(".orderCount");
+        let count = parseInt($orderCount.text());
+        let itemTotal = parseInt($orderCount.closest("tr").prev().find(".itemTotal").text());
+        
+        if (count >= itemTotal) {
+            return;
+        } else {
+            $orderCount.text(count + 1);
+        }
+        
+        updatePage();
+    }
+
+    function orderCountCheck() {
+        let orderCount = parseInt($(this).text());
+        let itemTotal = parseInt(
+            $(this).closest("tr").prev().find(".itemTotal").text()
+        );
+
+        let $minusBtn = $(this).siblings(".minusBtn");
+        let $plusBtn = $(this).siblings(".plusBtn");
+
+        if (orderCount >= itemTotal) {
+            $plusBtn.css("color", "lightgray");
+        } else {
+            $plusBtn.css("color", "");
+        }
+
+        if (orderCount <= 1 || itemTotal <= 1) {
+            $minusBtn.css("color", "lightgray");
+        } else {
+            $minusBtn.css("color", "");
+        }
     }
 
     
@@ -113,6 +165,8 @@ $(document).ready(function(){
     });
 
     $(".checkBox").on("change", updateCartTotal);
+    $(".minusBtn").on("click", countDown);
+    $(".plusBtn").on("click", countUp);
 
     
 

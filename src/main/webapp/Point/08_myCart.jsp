@@ -51,7 +51,7 @@
 					<td colspan="4" align="center">
 						<table class="mx-2">
 							<tr>
-								<td colspan="3" class="pb-2 orTo">( 주문 가능 재고 : <span>${item.itemTotal} )</span></td>
+								<td colspan="3" class="pb-2 orTo">( 주문 가능 재고 : <span class="itemTotal">${item.itemTotal} )</span></td>
 							</tr>
 							<tr>
 								 <td class="countBtn minusBtn">-</td>
