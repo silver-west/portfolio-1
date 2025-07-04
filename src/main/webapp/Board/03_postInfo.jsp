@@ -31,7 +31,7 @@
                 <td>${post.readCount}</td>
             </tr>
             <tr>
-                <td id="postArea" colspan="6" width="370px" height="160px" style="white-space: pre-line;">
+                <td id="postArea" colspan="6" width="370px" height="160px" style="white-space: pre-line; text-align: left;">
                     ${post.content}
                 </td>
             </tr>
@@ -62,7 +62,7 @@
                 }
             });
             
-            $("#postArea").addClass("py-5");
+            $("#postArea").addClass("p-5");
             $("#postArea").css("line-height", "2em");
         });
     </script>
