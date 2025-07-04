@@ -8,13 +8,23 @@
             <a href="${contextPath}/BoardIndex.do" class="nav-link">게시판</a>
         </div>
         <div class="nav-item col-6 col-sm-3 p-1">
-            <a href="${contentPath}/PointAdmin.do" class="nav-link">포인트</a>
+            <a href="#" class="nav-link not">포인트</a>
         </div>
         <div class="nav-item col-6 col-sm-3 p-1">
-            <a href="#" class="nav-link">준비중</a>
+            <a href="#" class="nav-link not">준비중</a>
         </div>
         <div class="nav-item col-6 col-sm-3 p-1">
             <a href="${contextPath}/Admin.do" class="nav-link">메인</a>
         </div>
     </div>
 </div>
+<script>
+$(document).ready(function(){
+	$(".not").click(function(e){
+		e.preventDefault();
+		
+		alert("준비중 입니다").
+		loaction.href = "/Admin.do";
+	});
+});
+</script>

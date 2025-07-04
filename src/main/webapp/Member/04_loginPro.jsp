@@ -8,6 +8,7 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <jsp:include page="/common/00_intergration.jsp"></jsp:include>
 <body>
+<div class="wrapper">
 <div class="bg-white contentBox" align="center">
 	<c:choose>
 		<c:when test="${!empty logId}">
@@ -32,5 +33,7 @@
 		$("#pageLink").addClass("mx-3");
 	});
 </script>
+<jsp:include page="/common/05_footer.jsp"></jsp:include>
+</div>
 </body>
 

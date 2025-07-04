@@ -4,6 +4,7 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <jsp:include page="/Point/02_mini_navi.jsp"></jsp:include>
 <body>
+<div class="wrapper">
 <div class="bg-white contentBox" align="center">
     <div align="center">
 	 	<span class="contentTitle">포인트 보내기</span>  
@@ -43,4 +44,6 @@
     </div>
 </div>
 <script src="${contextPath}/Point/js/sendPoint.js"></script>
+<jsp:include page="/common/05_footer.jsp"></jsp:include>
+</div>
 </body>

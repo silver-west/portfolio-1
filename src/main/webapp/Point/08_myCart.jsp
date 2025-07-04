@@ -4,6 +4,7 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <jsp:include page="/Point/02_mini_navi.jsp"></jsp:include>
 <body>
+<div class="wrapper">
 <div class="bg-white contentBox" align="center">
 	<div align="center" class="mb-3">
 	 	<span class="contentTitle">🛒 장바구니</span>  
@@ -90,4 +91,6 @@
 	
 </div>
 <script src="${contextPath}/Point/js/myCart.js"></script>
+<jsp:include page="/common/05_footer.jsp"></jsp:include>
+</div>
 </body>

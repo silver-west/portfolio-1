@@ -4,6 +4,7 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <jsp:include page="/Board/02_mini_navi.jsp"></jsp:include>
 <body>
+<div class="wrapper">
 <div class="bg-white contentBox" align="center">
 	<c:choose>
 		<c:when test="${delPostCheck eq true}">
@@ -35,4 +36,6 @@
 		});
 	});
 </script>
+<jsp:include page="/common/05_footer.jsp"></jsp:include>
+</div>
 </body>

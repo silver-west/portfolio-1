@@ -4,6 +4,7 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <jsp:include page="/Board/02_mini_navi.jsp"></jsp:include>
 <body>
+<div class="wrapper">
 	<div class="bg-white contentBox">
 		<div align="center" class="pt-3">
 	 		 <span class="boardTitle">글 목록</span>  
@@ -60,4 +61,6 @@
 			
 		});
 	</script>
+<jsp:include page="/common/05_footer.jsp"></jsp:include>
+</div>
 </body>

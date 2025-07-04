@@ -4,6 +4,7 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <jsp:include page="/common/00_intergration.jsp"></jsp:include>
 <body>
+<div class="wrapper">
 <div class="bg-white contentBox" align="center">
     <div class="titleBox">
 	  <span class="contentTitle">🧸 정보 수정</span>  
@@ -41,4 +42,6 @@
 </div>
 <!--Java Script -->
 <script src="${contextPath}/Member/js/03_editInfo.js"></script>
+<jsp:include page="/common/05_footer.jsp"></jsp:include>
+</div>
 </body>

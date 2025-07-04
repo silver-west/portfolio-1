@@ -4,6 +4,7 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <jsp:include page="/Point/02_mini_navi.jsp"></jsp:include>
 <body>
+<div class="wrapper">
 	<div class="bg-white contentBox">
   	<div align="center">
 		<form method="post" id="itemBox" class="p-2">	
@@ -70,4 +71,6 @@
 	</div>
 	
 <script src="${contextPath}/Point/js/itemInfo.js"></script>
+<jsp:include page="/common/05_footer.jsp"></jsp:include>
+</div>
 </body>

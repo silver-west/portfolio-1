@@ -4,6 +4,7 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <jsp:include page="/Point/02_mini_navi.jsp"></jsp:include>
 <body>
+<div class="wrapper">
 <c:choose>
 <c:when test="${empty logId}">
 	<div align="center">
@@ -87,4 +88,6 @@ $("document").ready(function(){
     
 });
 </script>
+<jsp:include page="/common/05_footer.jsp"></jsp:include>
+</div>
 </body>

@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<body>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
     <div class="footer container-fluid justify-content-center text-white">
         <div class="row mb-3 pt-2">
             <div class="fw-bold text-center">
-                <a href="#" class="link">Main</a>
+                <a href="${contextPath}/Main.do" class="link">Main</a>
                 <span class="px-2">|</span>
                 <a href="#top" class="link">Back to Top</a>
             </div>
@@ -27,6 +28,3 @@
             </tr>
         </table>
     </div>
-</body>
-</body>
-</html>

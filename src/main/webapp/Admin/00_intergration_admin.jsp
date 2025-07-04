@@ -3,7 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
-<html>
 <head>
 <meta charset="UTF-8">
 <title>Silver's Portfolio</title>
@@ -27,9 +26,6 @@
 <link rel="stylesheet" href="${contextPath}/Admin/admin.css">
 
 </head>
-<body>
 <jsp:include page="/common/01_topBar.jsp"></jsp:include>
 <%@ include file="/common/02_header.jsp"%>
 <jsp:include page="/Admin/07_admin_navi.jsp"></jsp:include>
-</body>
-</html>

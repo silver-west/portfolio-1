@@ -4,7 +4,7 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <jsp:include page="/Point/02_mini_navi.jsp"></jsp:include>
 <body>
-<body>
+<div class="wrapper">
 <div class="bg-white contentBox" align="center">
 	<div class="titleBox">
 	 	<span class="contentTitle">❌ 장바구니 추가 실패</span>
@@ -25,4 +25,6 @@ $(document).ready(function() {
 	});
 });
 </script>
+<jsp:include page="/common/05_footer.jsp"></jsp:include>
+</div>
 </body>

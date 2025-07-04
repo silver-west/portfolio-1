@@ -4,6 +4,7 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <jsp:include page="/Admin/00_intergration_admin.jsp"></jsp:include>
 <body>
+<div class="wrapper">
 <div class="bg-white contentBox">
 	<div class="titleBox">
 		<span class="contentTitle">✔️ 회원 정보</span>  
@@ -27,6 +28,8 @@
   		<div align="center">
   			<button class="myBtn btn my-3" onclick="window.location.href='${contextPath}/UserControl.do'">돌아가기</button>
 		</div>
+</div>
+<jsp:include page="/common/05_footer.jsp"></jsp:include>
 </div>
 </body>
 	

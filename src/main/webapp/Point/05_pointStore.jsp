@@ -4,6 +4,7 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <jsp:include page="/Point/02_mini_navi.jsp"></jsp:include>
 <body>
+<div class="wrapper">
 <div class="bg-white contentBox" align="center">
 	<div>
 	 		<span class="contentTitle">✔️ 포인트 상점</span>  
@@ -78,4 +79,6 @@ $(document).ready(function() {
 	});
 });
 </script>
+<jsp:include page="/common/05_footer.jsp"></jsp:include>
+</div>
 </body>

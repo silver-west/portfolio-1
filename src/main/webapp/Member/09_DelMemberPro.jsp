@@ -4,6 +4,7 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <jsp:include page="/common/00_intergration.jsp"></jsp:include>
 <body>
+<div class="wrapper">
 <div class="bg-white contentBox" align="center">
 	<c:choose>
 		<c:when test="${delCheck eq true}">
@@ -21,5 +22,7 @@
   			</div> 
 		</c:otherwise>
 	</c:choose>
+</div>
+<jsp:include page="/common/05_footer.jsp"></jsp:include>
 </div>
 </body>

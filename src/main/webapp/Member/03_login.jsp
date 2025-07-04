@@ -4,6 +4,7 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <jsp:include page="/common/00_intergration.jsp"></jsp:include>
 <body>
+<div class="wrapper">
     <div class="bg-white contentBox">
   <div class="titleBox">
 	  <span class="contentTitle">🐤 로그인</span>  
@@ -31,5 +32,6 @@
 </div>
 <!--Java script-->
 <script src="${contextPath}/Member/js/02_login.js"></script>
-</body>
 <jsp:include page="/common/05_footer.jsp"></jsp:include>
+</div>
+</body>
