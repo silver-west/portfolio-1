@@ -46,7 +46,7 @@ public class StoreItemDAO {
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				StoreItem item = new StoreItem(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getInt(5));
+				StoreItem item = new StoreItem(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getInt(5), rs.getString(6));
 				itemList.add(item);
 			}
 			
@@ -72,7 +72,7 @@ public class StoreItemDAO {
 			if (rs.next()) {
 				System.out.println("== 아이템 검색 완료 ==");
 				//int number, String name, int price, String coment, int total
-				item = new StoreItem(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getNString(4), rs.getInt(5));
+				item = new StoreItem(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getNString(4), rs.getInt(5), rs.getString(6));
 			} else {
 				System.out.println("시스템 오류 :: 아이템 조회 불가");
 			}

@@ -109,7 +109,7 @@ $(document).ready(function(){
 			method: "POST",
 			data: { vsPoint : price },
 			success :function(response) {
-				if (response == "pass") {
+				if (response == "pass") {		
 					$("form").attr("action", "BuyItem.do");
 					$("input[name='orderPrice']").val(price);
 					$("form").submit();

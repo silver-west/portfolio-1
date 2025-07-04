@@ -5,13 +5,15 @@ public class MyCart extends Cart {
 	private String coment;
 	private int itemTotal;
 	private int itemPrice;
+	private String itemPath;
 	
-	public MyCart(String userId, int itemNumber, int orderCount, String itemName, String coment, int itemTotal, int itemPrice) {
+	public MyCart(String userId, int itemNumber, int orderCount, String itemName, String coment, int itemTotal, int itemPrice, String itemPath) {
 		super(userId, itemNumber, orderCount);
 		this.itemName = itemName;
 		this.coment = coment;
 		this.itemTotal = itemTotal;
 		this.itemPrice = itemPrice;
+		this.itemPath = itemPath;
 	}
 
 	public String getItemName() {
@@ -45,6 +47,16 @@ public class MyCart extends Cart {
 	public void setItemPrice(int itemPrice) {
 		this.itemPrice = itemPrice;
 	}
+
+	public String getItemPath() {
+		return itemPath;
+	}
+
+	public void setItemPath(String itemPath) {
+		this.itemPath = itemPath;
+	}
+	
+	
 	
 	
 	

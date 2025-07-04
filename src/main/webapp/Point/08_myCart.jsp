@@ -44,7 +44,7 @@
 				</tr>
 				<tr>
 					<td colspan="2" rowspan="2">
-						<img src="${contextPath}/Point/img/comingImg.jpg">
+						<img src="${contextPath}${item.itemPath}"> <!-- 수정해야함 -->
 					</td>
 					<td class="px-4" colspan="2">
 						${item.coment}

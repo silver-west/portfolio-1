@@ -25,7 +25,6 @@ public class StoreItem {
 		this.price = price;
 		this.coment = coment;
 		this.total = total;
-		this.path = null;
 	}
 	
 	public int getNumber() {

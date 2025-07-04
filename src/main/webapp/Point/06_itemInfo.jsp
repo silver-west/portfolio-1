@@ -16,7 +16,7 @@
 			 	</colgroup>
 				<tr>
 					<td rowspan="5" id="itemImgBox">
-		 				<img src="${contextPath}/Point/img/comingImg.jpg" id="itemInfoImg">
+		 				<img src="${contextPath}${item.path}" id="itemInfoImg">
 		 			</td>
 					<td class="p" id="itemName">${item.name}</td>
 		 			<td class="price"><span id="itemPrice" class="p">${item.price}</span> P</td>

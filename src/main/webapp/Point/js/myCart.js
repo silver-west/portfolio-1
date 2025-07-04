@@ -3,8 +3,8 @@ $(document).ready(function(){
 	$("input[name='check']").addClass("ms-3");
 	$("img").css({
 		"width" : "100%",
-		"height" : "100%",
-		"object-fit" : "cover" 	
+		"height" : "100px",
+		"object-fit" : "contain" 	
 	});
 	
 	$(".orTo").css({

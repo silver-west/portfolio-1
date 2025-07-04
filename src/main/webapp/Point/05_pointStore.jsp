@@ -13,13 +13,13 @@
   		<div class="row">
   	<c:forEach var="item" items="${itemList}">
   				<div class=" col-sm-4 col-6" align="center" id="cardBoard">
-	  				<div class="card mb-3">
-	  					<img src="${contextPath}/Point/img/comingImg.jpg" class="card-img-top border-bottom">
+	  				<div class="card mb-3 myCard">
+	  					<img src="${contextPath}${item.path}" class="card-img-top border-bottom storeItemImg">
 	  					<div class="card-body py-1">
 	  						<p class="card-title mt-2">
 	  							<a href="${contextPath}/ItemInfo.do?itemNum=${item.number}">${item.name}</a>
 	  						</p>
-	  						<div class="card-text pb-1">
+	  						<div class="card-text pb-2">
 	  							<p>${item.coment}</p>
 	  							<span class="text" id="price">${item.price} P</span><br>
 	  							<span class="text">남은 수량 : </span><span class="text" id="total">${item.total}</span><span class="ment ms-2"></span>
@@ -32,53 +32,9 @@
   	</div>
 </div>
 <script>
-$(document).ready(function() {
-	
-	$(".card").each(function() {
-		let total = $(this).find("#total").text();
-		
-		if (parseInt(total) == 0) {
-			$(this).find(".text").css({
-				"color" : "gray",
-				"text-decoration" : "line-through",
-				"text-decoration-color" : "red",
-			});
-			let $ment = $(this).find(".ment");
-			$ment.addClass("text-danger");
-			$ment.css({
-				"border" : "1px solid darkgray",
-				"border-radius" : "3px",
-				"padding" : "2px"
-			});
-			$ment.text("품절");
-		} 
-	});
-	
-	$(".card").on("mouseenter", function() {
-		$(this).css({
-			"border" : "3px solid lightblue",
-			"cursor" : "pointer"
-		});
-	});
-	$(".card").on("mouseleave", function() {
-		$(this).css({
-			"border" : "1px solid lightgray",
-			"cursor" : ""
-		});
-	});
-	$(".card").on("mousedown", function() {
-		$(this).css({
-			"border" : "2px solid #00809D",
-		});
-	});
-	
-	$(".card").on("click", function(e) {
-		let url = $(this).find("a").attr("href");
-		
-		location.href = url;
-	});
-});
+	const contextPath = "${pageContext.request.contextPath}";
 </script>
+<script src="${contextPath}/Point/js/pointStore.js"></script>
 <jsp:include page="/common/05_footer.jsp"></jsp:include>
 </div>
 </body>
