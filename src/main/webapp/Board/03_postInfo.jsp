@@ -30,7 +30,7 @@
                 <td>${post.readCount}</td>
             </tr>
             <tr>
-                <td colspan="6" width="370px" height="160px">
+                <td id="postArea" colspan="6" width="370px" height="160px" style="white-space: pre-line;">
                     ${post.content}
                 </td>
             </tr>
@@ -60,6 +60,9 @@
                     window.location.href = url;
                 }
             });
+            
+            $("#postArea").addClass("py-5");
+            $("#postArea").css("line-height", "2em");
         });
     </script>
 </div>
