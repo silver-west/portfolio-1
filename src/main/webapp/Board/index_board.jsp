@@ -6,6 +6,6 @@
 	session.setAttribute("btnCount", 3);
 	
 	String path = request.getContextPath();
-	response.sendRedirect(path + "/BoardMain.do");
+	response.sendRedirect(path + "/BoardMainDesc.do");
 
 %>

@@ -30,7 +30,7 @@
         	</table>
 		</form>
     </div>
-    <div align="center" class="table-responsive">
+    <div align="center" class="table-responsive historyTable">
         <table class="table tableForm">
             <tr>
 				<td class="th" width="20%">번호</td>

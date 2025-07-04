@@ -21,7 +21,7 @@
 		</c:otherwise>
 	</c:choose>
 	<div align="center">
-		<button class="myBtn btn my-4 transBtn" data-url="${contextPath}/BoardMain.do">게시글 목록</button>
+		<button class="myBtn btn my-4 transBtn" data-url="${contextPath}/BoardMainDesc.do">게시글 목록</button>
 		<button class="myBtn btn my-4 transBtn" data-url="${contextPath}/MyPostList.do">작성글 목록</button>
 	</div>     
 </div>

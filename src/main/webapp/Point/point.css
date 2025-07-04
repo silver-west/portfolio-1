@@ -101,6 +101,10 @@ a:hover {
 	white-space: nowrap;
 }
 
+.historyTable {
+	max-width: 700px;
+}
+
 #sendForm {
 	border: 1px solid lightgray;
 	width: 100%;

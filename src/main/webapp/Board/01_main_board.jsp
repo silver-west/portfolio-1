@@ -10,6 +10,12 @@
   		</div>
   		<div align="center" class="table-responsive">
 			<table class="table tableForm">
+				<tr>
+					<td colspan="4" align="right" class="me-3">
+						<button class="btn myBtn" data-url="${contextPath}/BoardMainDesc.do">최신순</button>
+						<button class="btn myBtn" data-url="${contextPath}/BoardMain.do">오래된순</button>
+					</td>
+				</tr>
                 <tr>
 					<td class="th" width="10%">번호</td>
 					<td class="th">제목</td>
@@ -50,6 +56,8 @@
 					window.location.href = url;
 				}
 			});
+			
+			
 		});
 	</script>
 </body>

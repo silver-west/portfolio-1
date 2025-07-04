@@ -40,7 +40,7 @@ public class AddPostPro extends HttpServlet {
 		
 		if (check) {
 			String path = request.getContextPath();
-			response.sendRedirect(path + "/BoardMain.do");
+			response.sendRedirect(path + "/BoardMainDesc.do");
 		} else {
 			RequestDispatcher dis = request.getRequestDispatcher("/Board/05_addPostPro.jsp");
 			dis.forward(request, response);

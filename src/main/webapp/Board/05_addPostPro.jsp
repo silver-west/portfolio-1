@@ -9,7 +9,7 @@
 	 		 <span class="contentTitle">❌ 게시글 추가 실패</span>  
   		<div align="center">
 			<button class="myBtn btn my-4 transBtn" data-url="${contextPath}/AddPost.do">재작성</button>
-			<button class="myBtn btn my-4 transBtn" data-url="${contextPath}/BoardMain.do">목록</button>
+			<button class="myBtn btn my-4 transBtn" data-url="${contextPath}/BoardMainDesc.do">목록</button>
 		</div> 
   		</div>
 	</div>
