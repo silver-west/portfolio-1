@@ -3,13 +3,16 @@ $("document").ready(function(){
 	$("label").addClass("form-label text-start w-100");
 	$("#mentPw").addClass("text-danger mt-2");
 	
+	$("#inputPw").on("input", function() {
+		$("#mentPw").text("");
+	});
+	
 	$("#submitBtn").click(function(e) {
 		e.preventDefault();
 		
 		let inputPw = $("#inputPw").val();
 
 		if (nullCheck($("#inputPw"))) {
-            $("#inputPw").focus();
             $("#mentPw").text("비밀번호를 입력하세요");
             
             return;

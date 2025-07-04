@@ -120,15 +120,7 @@ $(document).ready(function(){
 		});
 	}
 
-
-
-
-
-
-
-
-	
-	
+	//이벤트 등록
 	$plusBtn.on("click", countUp);
 	$minusBtn.on("click", countDown);
 	$buyBtn.on("click", checkPoint);

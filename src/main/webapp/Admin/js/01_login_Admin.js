@@ -1,5 +1,10 @@
 
 $(document).ready(function(){
+	$("#loginId").on("blur", idCheck);
+	$("#loginPw").on("blur", pwCheck);
+	$("#loginPw, #loginId").on("input", function() {
+		$("#ment").text("");
+	});
 
     $("#loginBtn").click(function(e) {
         e.preventDefault();
@@ -7,7 +12,12 @@ $(document).ready(function(){
         let inputId = $("#loginId").val();
         let inputPw = $("#loginPw").val();
 
-        if (!formCheck()) {
+        if (!idCheck() || !pwCheck()) {
+			if (!idCheck()) {
+				$("#loginId").focus();
+			} else {
+				$("#loginPw").focus();
+			}
             return;
         }
 
@@ -19,7 +29,7 @@ $(document).ready(function(){
                 if (response == "pass") {
                     $("form").submit();
                 } else {
-                    $("#ment").text("아이디, 비번이 틀립니다");
+                    $("#ment").text("아이디, 비밀번호가 틀립니다");
                     return;
                 }
             }
@@ -34,25 +44,26 @@ $(document).ready(function(){
             return true;
         }
     }
-
-    function formCheck() {
+	
+	function idCheck() {
         if (nullCheck($("#loginId"))) {
-            $("#loginId").focus();
             $("#mentId").text("아이디를 입력하세요");
-            return false;
+            return;
         } else {
 			$("#mentId").text("");
-		}
-        
+			return true;
+		}	
+	}
+	
+	function pwCheck() {
         if (nullCheck($("#loginPw"))) {
-            $("#loginPw").focus();
             $("#mentPw").text("비밀번호를 입력하세요");
-            return false;
+            return;
         } else {
 			$("#mentPw").text("");
+			return true;
 		}
-
-        return true;
-    }
+	}
+	
     
     });

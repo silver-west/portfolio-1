@@ -1,6 +1,7 @@
 //변수
 let idDupCheck = false;
 let nickDupCheck = false;
+let booleanrePwCheck = false;
 
 $(document).ready(function(){
     //bootStrap
@@ -83,6 +84,12 @@ $(document).ready(function(){
         });          
     });
     
+    $("#rePw").on("input blur", rePwCheck);
+    $("#joinPw").on("input blur", rePwCheck);
+    $("#joinId, #joinPw, #rePw, #joinNick").on("input", function(){
+		$("#ment").text("");
+	});
+    
     $("#submitBtn").click(function(e) {
         e.preventDefault();
 
@@ -107,19 +114,30 @@ $(document).ready(function(){
         }
 
         //3. 비번-비번확인 체크
-        let pw = $("#joinPw").val();
-        let re = $("#rePw").val();
-        if (pw != re) {
+        if (!booleanrePwCheck) {
 			$("#rePw").focus();
-            $("#mentRe").text("비밀번호가 다릅니다");
-            return;
-        }
+			return;
+		}
         
     
         $("form").submit();
     
     });
-});
+    
+	function rePwCheck() {
+		let pw = $("#joinPw").val();
+        let re = $("#rePw").val();
+        
+        if (pw != re) {
+            $("#mentRe").text("비밀번호가 다릅니다");
+            booleanrePwCheck = false;
+            return;
+        } else {
+			$("#mentRe").text("");
+	        booleanrePwCheck = true;
+		}
+        
+	}
 
     function formCheck() {
         if (!$("#joinId").val() || $("#joinId").val() == "") {
@@ -145,3 +163,4 @@ $(document).ready(function(){
         return true;
     }
 
+});

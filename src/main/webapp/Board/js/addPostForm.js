@@ -8,6 +8,10 @@ $("document").ready(function() {
 		$("#sumitBtn").addClass("btn myBtn");
 
         //check
+        $("input[name='title'], textarea[name='content']").on("input", function() {
+			$("#nullMent").html("");
+		})
+        
         $("#sumitBtn").click(function(e) {
             e.preventDefault();
 
@@ -26,9 +30,9 @@ $("document").ready(function() {
     }
 
     function formCheck() {
-        const $title = $("input[name='title']");
-        const $content = $("textarea[name='content']");
-        const $p = $("#nullMent");
+        let $title = $("input[name='title']");
+        let $content = $("textarea[name='content']");
+        let $p = $("#nullMent");
         
         if (nullCheck($title)) {
             
@@ -37,7 +41,7 @@ $("document").ready(function() {
             } else {
                 $p.addClass("text-danger text-center");
                 $content.focus();
-                $p.html("내용을 입력하세요");
+                $p.text("내용을 입력하세요");
 
                 return false;
             }
@@ -45,7 +49,7 @@ $("document").ready(function() {
         } else {
             $p.addClass("text-danger text-center");
             $title.focus();
-            $p.html("제목을 입력하세요");
+            $p.text("제목을 입력하세요");
 
             return false;
         }

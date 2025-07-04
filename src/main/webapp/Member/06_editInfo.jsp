@@ -32,7 +32,7 @@
             <p id="mentNick"></p>
 	    </div>
 	    <div class="joinForm" align="center">
-	        <button id="submitBtn" type="submit" class="myBtn btn my-3">수정하기</button>
+	        <button id="submitBtn" type="button" class="myBtn btn my-3">수정하기</button>
 	    </div>
     </form>
     <div class="mt-2" align="center">

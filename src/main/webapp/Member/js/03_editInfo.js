@@ -45,6 +45,10 @@ $(document).ready(function() {
     });
 
     //체크
+    $("#editPw, #rePw, #editNick").on("input", function(){
+			$("#mentPw, #mentRe, #mentNick, #ment").text("");
+	});
+	
     $(".nickCheck").click(function(e) { //중복체크 (나중에..)
         e.preventDefault();
 		
@@ -114,12 +118,14 @@ $(document).ready(function() {
         }
 
         //비밀번호 체크
-        if (pw != re) {
-            $("#rePw").focus();
-            $("#mentRe").text("입력하신 비밀번호와 다릅니다");
-            
-            return;
-        } 
+        if (chanePw || chaneRe) {
+	        if (pw != re) {
+	            $("#rePw").focus();
+	            $("#mentRe").text("입력하신 비밀번호와 다릅니다");
+	            
+	            return;
+	        } 	
+		}
 
         //닉네임 체크
         if (!nickDupCheck && chaneNick) {

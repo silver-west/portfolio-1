@@ -5,11 +5,15 @@ $("document").ready(function() {
 		$(".miniheader").css("margin", "0");
         $("#formSt td").addClass("m-2 p-2");
 		$(".noneLine").css("border-bottom", "none");
-        $("#sumitBtn").addClass("btn myBtn");
-        $("##nullMent").addClass("text-danger");
+        $("#submitBtn").addClass("btn myBtn");
+        $("#nullMent").addClass("text-danger");
 
         //check
-        $("#sumitBtn").click(function(e) {
+        $("input[name='editSubject'], textarea[name='editContent']").on("input", function(){
+			$("#nullMent").text("");
+		});
+		
+        $("#submitBtn").click(function(e) {
             e.preventDefault();
 
             if (formCheck()) {
@@ -18,32 +22,32 @@ $("document").ready(function() {
                 return;
             }
         });
-	});
-
-    function nullCheck() {
-        if ($(this).val() || $(this).val() == "") {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    function formCheck() {
-        let $editSubject = $("input[name='editSubject']");
-        let $editContent = $("textarea[name='editContent']");
-        let $p = $("#nullMent");
         
-        if ($editSubject.nullCheck()) {
-            $p.text("제목을 입력하세요");
-            $editSubject.focus();
-            return false;  
-        }
-
-        if ($editContent.nullCheck()) {
-            $p.text("내용을 입력하세요");
-            $editContent.focus();
-            return false;  
-        }
-
-        return true;
-    }
+	    function nullCheck($target) {
+	        if (!$target.val() || $target.val() == "") {
+	            return true;
+	        } else {
+	            return false;
+	        }
+	    }
+	
+	    function formCheck() {
+	        let $editSubject = $("input[name='editSubject']");
+	        let $editContent = $("textarea[name='editContent']");
+	        let $p = $("#nullMent");
+	        
+	        if (nullCheck($editSubject)) {
+	            $p.text("제목을 입력하세요");
+	            $editSubject.focus();
+	            return false;  
+	        }
+	
+	        if (nullCheck($editContent)) {
+	            $p.text("내용을 입력하세요");
+	            $editContent.focus();
+	            return false;  
+	        }
+	
+	        return true;
+	    }
+	});

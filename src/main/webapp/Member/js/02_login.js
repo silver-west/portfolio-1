@@ -24,24 +24,26 @@ $(document).ready(function(){
 
     
     //체크
-    $("#loginId").blur(function(){
-    if (!nullCheck($(this))) {
-        $("#mentId").text("아이디를 입력하세요");
-        booleanId = false;
-    } else {
-        $("#mentId").text("");
-        booleanId = true;
-    }
+    $("#loginId").on("blur input", function(){
+		$("#loginMent").text("");
+	    if (!nullCheck($(this))) {
+	        $("#mentId").text("아이디를 입력하세요");
+	        booleanId = false;
+	    } else {
+	        $("#mentId").text("");
+	        booleanId = true;
+	    }
     });
 
-    $("#loginPw").blur(function(){
-    if (!nullCheck($(this))) {
-        $("#mentPw").text("비밀번호를 입력하세요");
-        booleanPw = false;
-    } else {
-        $("#mentPw").text("");
-        booleanPw = true;
-    }
+    $("#loginPw").on("blur input", function(){
+		$("#loginMent").text("");
+	    if (!nullCheck($(this))) {
+	        $("#mentPw").text("비밀번호를 입력하세요");
+	        booleanPw = false;
+	    } else {
+	        $("#mentPw").text("");
+	        booleanPw = true;
+	    }
     });
 
 

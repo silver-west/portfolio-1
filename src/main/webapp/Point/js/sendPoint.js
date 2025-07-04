@@ -5,16 +5,19 @@ $("document").ready(function(){
     $("#submitBtn").addClass("myBtn btn mt-3");
     $("#pointMent, #myPoint").addClass("text-success");
     
+    $("input[name='sendUser'], input[name='recieve'], input[name='sendPoint']").on("input blur", function(){
+		$("#ment").text("");
+	});
+    
     //체크 -> 1. null 2. send 2.point
     $("#submitBtn").click(function(e){
     	e.preventDefault();
     	
-    	const myPoint = Number($("#myPoint").text());
-    	
-    	const send = $("[name='sendUser']").val();
+    	let myPoint = Number($("#myPoint").text());
+    	let send = $("input[name='sendUser']").val();
     	let $recieve = $("input[name='recieve']");
         console.log($recieve.val());
-    	let $sendPoint = $("[name='sendPoint']");
+    	let $sendPoint = $("input[name='sendPoint']");
     	
     	//null
     	if (nullCheck($recieve)) {
@@ -86,7 +89,7 @@ $("document").ready(function(){
                     $("form").submit();
                 } else {
                     booleanRecieve = false;
-                    $("#ment").text(`받는 분에 해당하는 ${mentKey}이 없습니다`);
+                    $("#ment").text(`해당 ${mentKey}의 유저가 없습니다`);
                     return;
                 }
             }

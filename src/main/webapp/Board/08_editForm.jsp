@@ -27,7 +27,7 @@
 		</table>
         <input type="hidden" name="postNum" value="${editPost.number}">
         <div align="center">
-            <button id="sumitBtn" type="submit">작성 완료</button>
+            <button id="submitBtn" type="submit">작성 완료</button>
         </div>
 	</form>
     <div align="center" class="mt-2">
