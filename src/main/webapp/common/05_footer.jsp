@@ -21,8 +21,16 @@
             <tr>
                 <th class="text-white"><span>Blog</span></th>
                 <td class="text-white">
-                    <a href="https://codingstudy-silver.tistory.com/" class="link">
+                    <a href="https://codingstudy-silver.tistory.com/" class="link" target="_blank">
                     silver의 개발자 도전 log
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <th class="text-white"><span>GitHub</span></th>
+                <td class="text-white">
+                    <a href="https://github.com/silver-west/portfolio-1" class="link" target="_blank">
+                    silver-west
                     </a>
                 </td>
             </tr>

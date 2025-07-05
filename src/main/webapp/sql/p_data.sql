@@ -82,7 +82,7 @@ CREATE TABLE point_store(
 -- testCode
 INSERT INTO point_store  VALUES(1, '무선 블루투스 이어폰', 1000, '선 없이 자유롭게 사용할 수 있는\n컴팩트한 블루투스 이어폰입니다.', 5, '/Point/img/bluetooth.png');
 INSERT INTO point_store  VALUES(2, '천연 가죽 반지갑', 500, '부드러운 천연 소가죽으로 제작된\n세련된 디자인의 남성용 반지갑입니다.', 0, '/Point/img/wallet.png');
-INSERT INTO point_store  VALUES(3, '아로마 디퓨저 세트', 300, '은은한 향기로 공간을 채우는\n우드 스틱 타입의 디퓨저 세트입니다.', 4, '/Point/img/tumblur.png');
+INSERT INTO point_store  VALUES(3, '아로마 디퓨저 세트', 300, '은은한 향기로 공간을 채우는\n우드 스틱 타입의 디퓨저 세트입니다.', 4, '/Point/img/diffusor.png');
 INSERT INTO point_store  VALUES(4, '프리미엄 텀블러', 800, '이중 구조로 보온/보냉이 뛰어난\n휴대용 프리미엄 텀블러입니다.', 30, '/Point/img/tumblur.png');
 INSERT INTO point_store  VALUES(5, '수제 마카롱 세트', 400, '바삭한 겉과 촉촉한 속의 조화가\n일품인 수제 마카롱 세트입니다.', 10, '/Point/img/maca.png');
 INSERT INTO point_store  VALUES(6, '곰돌이 봉제 인형', 100, '포근한 촉감과 귀여운 디자인으로\n선물용으로도 인기 있는 인형입니다.', 100, '/Point/img/bear.png');

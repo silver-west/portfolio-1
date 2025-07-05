@@ -28,4 +28,17 @@
 </head>
 <jsp:include page="/common/01_topBar.jsp"></jsp:include>
 <%@ include file="/common/02_header.jsp"%>
-<jsp:include page="/common/03_navi.jsp"></jsp:include>
+<c:choose>
+	<c:when test="${logId eq 'admin'}">
+		<jsp:include page="/Admin/07_admin_navi.jsp"></jsp:include>
+	</c:when>
+	<c:otherwise>
+		<jsp:include page="/common/03_navi.jsp"></jsp:include>	
+	</c:otherwise>
+</c:choose>
+
+
+
+
+
+
