@@ -212,7 +212,7 @@ a:hover {
 }
 
 .tL td {
-	border-top: 1px solid black;
+	border-bottom: 1px solid lightgray;
 }
 
 .countBtn {
@@ -221,6 +221,7 @@ a:hover {
 	height: 35px;
 	width: 33%;
 }
+
 
 #div2 {
 	max-width: 700px;

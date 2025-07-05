@@ -29,30 +29,30 @@
 	    <col style="width:20%">
   </colgroup>
 	<tr class="tdL">
-		<td><input type="checkBox" id="allCheck" checked="checked" class="ms-3"></td>
-		<td colspan="2" >전체선택</td>
+		<td style="border-bottom: 1px solid black"><input type="checkBox" id="allCheck" checked="checked" class="ms-3"></td>
+		<td colspan="4" style="border-bottom: 1px solid black">전체선택</td>
 	</tr>
 	<c:forEach var="item" items="${myCart}">
-				<tr class="tdL tL">
+				<tr class="tL">
 					<td><input type="checkbox" name="check" class="checkBox" checked="checked" value="${item.itemNumber}"></td>
 					<td class="itemName" colspan="2">${item.itemName}</td>
-					<td"><span class="itemPrice">${item.itemPrice}</span> P</td>
+					<td><span class="itemPrice">${item.itemPrice}</span> P</td>
 					<td colspan="3" align="right" class="my-2 py-2">
 						<button type="button" class="delBtn mx-3" onclick="window.location.href='${contextPath}/DelCart.do?itemNum=${item.itemNumber}'">
 						X
 						</button>
 					</td>
 				</tr>
-				<tr>
-					<td colspan="2" rowspan="2">
+				<tr class="tL">
+					<td colspan="2" rowspan="2" style="border-bottom: 1px solid black">
 						<img src="${contextPath}${item.itemPath}"> 
 					</td>
-					<td class="p-2" colspan="3">
+					<td class="p-2" colspan="3" style="border: none">
 						${item.coment}
 					</td>
 				</tr>
-				<tr>
-					<td colspan="4" align="center">
+				<tr class="tL">
+					<td colspan="4" align="center" style="border-bottom: 1px solid black">
 						<table class="mx-2">
 							<tr>
 								<td colspan="3" class="pb-2 orTo">( 주문 가능 재고 : <span class="itemTotal">${item.itemTotal} )</span></td>
@@ -65,7 +65,7 @@
 								 <td class="countBtn plusBtn">+</td>
 							</tr>
 							<tr>
-								<td colspan="3" class="priceText">=> <span class="totalPrice">0</span> P</td>
+								<td colspan="3" class="priceText" style="border: none">=> <span class="totalPrice">0</span> P</td>
 							</tr>
 						</table>
 					</td>

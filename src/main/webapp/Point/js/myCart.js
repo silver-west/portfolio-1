@@ -11,8 +11,6 @@ $(document).ready(function(){
 		"font-weight" : "bold",
 		"color" : "coral"
 	});
-	
-	$(".noL").css("border-top", "1px solid lightgray");
 
     $("#checkDelBtn").addClass("btn btn-danger mx-3");
     $("#cartBuyBtn").addClass("btn btn-success");
