@@ -24,8 +24,9 @@
 	<table class="w-70" id="cartTable">
 	<colgroup>
 	    <col style="width:10%">
-	    <col style="width:30%">
-	    <col style="width:60%">
+	    <col style="width:35%">
+	    <col style="width:35%">
+	    <col style="width:20%">
   </colgroup>
 	<tr class="tdL">
 		<td><input type="checkBox" id="allCheck" checked="checked" class="ms-3"></td>
@@ -34,9 +35,9 @@
 	<c:forEach var="item" items="${myCart}">
 				<tr class="tdL tL">
 					<td><input type="checkbox" name="check" class="checkBox" checked="checked" value="${item.itemNumber}"></td>
-					<td class="itemName">${item.itemName}</td>
-					<td><span class="itemPrice">${item.itemPrice}</span> P</td>
-					<td colspan="4" align="right" class="my-2 py-2">
+					<td class="itemName" colspan="2">${item.itemName}</td>
+					<td"><span class="itemPrice">${item.itemPrice}</span> P</td>
+					<td colspan="3" align="right" class="my-2 py-2">
 						<button type="button" class="delBtn mx-3" onclick="window.location.href='${contextPath}/DelCart.do?itemNum=${item.itemNumber}'">
 						X
 						</button>
@@ -44,9 +45,9 @@
 				</tr>
 				<tr>
 					<td colspan="2" rowspan="2">
-						<img src="${contextPath}${item.itemPath}"> <!-- 수정해야함 -->
+						<img src="${contextPath}${item.itemPath}"> 
 					</td>
-					<td class="px-4" colspan="2">
+					<td class="p-2" colspan="3">
 						${item.coment}
 					</td>
 				</tr>
