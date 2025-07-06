@@ -1,6 +1,7 @@
 ![header](https://capsule-render.vercel.app/api?type=waving&color=timeAuto&height=200&section=header&text=PointSquare&fontSize=50&fontAlign=20&animation=fadeIn)
 # PointSquare
 활동을 통해 포인트를 쌓는 구조로 커뮤니티와 포인트 상점을 즐길 수 있는 JSP 기반 웹사이트<br>
+[📎 PointSquare 바로가기] (https://bli583.cafe24.com)
 
 
 ## 개요
